@@ -12,6 +12,7 @@ using Microsoft.Practices.Unity.Configuration;
 
 namespace locContaniner
 {
+    //ioc容器
     public class IocCreate
     {
         public static T CreateProductTypeDao<T>(string cname,string rname)
