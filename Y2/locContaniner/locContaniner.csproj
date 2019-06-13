@@ -43,16 +43,25 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Unity.Abstractions">
-      <HintPath>..\..\..\..\..\..\.NET C#\资料\T11\Unity\Unity.5.8.11\lib\net40\Unity.Abstractions.dll</HintPath>
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Configuration">
-      <HintPath>..\..\..\..\..\..\.NET C#\资料\T11\Unity\Unity.5.8.11\lib\net40\Unity.Configuration.dll</HintPath>
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Container">
-      <HintPath>..\..\..\..\..\..\.NET C#\资料\T11\Unity\Unity.5.8.11\lib\net40\Unity.Container.dll</HintPath>
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception">
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration">
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention">
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ServiceLocation">
-      <HintPath>..\..\..\..\..\..\.NET C#\资料\T11\Unity\Unity.5.8.11\lib\net40\Unity.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.ServiceLocation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
