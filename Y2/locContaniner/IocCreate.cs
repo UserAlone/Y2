@@ -24,7 +24,7 @@ namespace locContaniner
         {
             UnityContainer ioc = new UnityContainer();
             ExeConfigurationFileMap exf = new ExeConfigurationFileMap();
-            exf.ExeConfigFilename = @"E:\Y2\.NET ASP\上机\项目\locContaniner\Unity.config";
+            exf.ExeConfigFilename = @"../UI/Unity.config";
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(exf, ConfigurationUserLevel.None);
             UnityConfigurationSection cfs = (UnityConfigurationSection)cf.GetSection("unity");
             ioc.LoadConfiguration(cfs, name);
