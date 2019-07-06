@@ -28,11 +28,11 @@ namespace BAL
         }
         public List<T> SelectAll<T>()where T:class
         {                       
-            return hde.Set<T>().Select(e => e).ToList();
+            return hde.Set<T>().Select(e => e).AsNoTracking().ToList();
         }
         public List<T> SelectWhere<T>(Expression<Func<T, bool>> where) where T : class
         {
-            return hde.Set<T>().Where(where)
+            return hde.Set<T>().Where(where).AsNoTracking()
                   .Select(e => e)
                   .ToList();
         }
@@ -56,6 +56,7 @@ namespace BAL
         public int Update<T>(T t) where T : class
         {
             hde.Entry<T>(t).State = EntityState.Modified;
+            hde.Configuration.ValidateOnSaveEnabled = false;
             return hde.SaveChanges();
         }
 

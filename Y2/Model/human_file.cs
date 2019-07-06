@@ -76,5 +76,6 @@ namespace Model
         public Nullable<System.DateTime> delete_time { get; set; }
         public Nullable<System.DateTime> recovery_time { get; set; }
         public Nullable<bool> human_file_status { get; set; }
+        public Nullable<short> delete_status { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HR_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HR_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--生成过程中发现错误:
 警告 6002: 表/视图“HR_DB .dbo.bonus”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="bonus">
@@ -181,8 +181,6 @@
           <Property Name="second_kind_name" Type="varchar" MaxLength="60" />
           <Property Name="question_amount" Type="smallint" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“HR_DB .dbo.engage_interview”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="engage_interview">
           <Key>
             <PropertyRef Name="ein_id" />
@@ -212,8 +210,6 @@
           <Property Name="interview_status" Type="smallint" />
           <Property Name="check_status" Type="smallint" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“HR_DB .dbo.engage_major_release”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="engage_major_release">
           <Key>
             <PropertyRef Name="mre_id" />
@@ -239,8 +235,6 @@
           <Property Name="major_describe" Type="text" />
           <Property Name="engage_required" Type="text" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“HR_DB .dbo.engage_resume”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="engage_resume">
           <Key>
             <PropertyRef Name="res_id" />
@@ -296,6 +290,9 @@
           <Property Name="pass_check_status" Type="smallint" />
           <Property Name="pass_checkComment" Type="varchar" MaxLength="60" />
           <Property Name="pass_passComment" Type="varchar" MaxLength="60" />
+          <Property Name="check_status_sx" Type="smallint" />
+          <Property Name="Staff_files" Type="smallint" />
+          <Property Name="Staff_files_dj" Type="smallint" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“HR_DB .dbo.engage_subjects”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -387,6 +384,7 @@
           <Property Name="delete_time" Type="datetime" />
           <Property Name="recovery_time" Type="datetime" />
           <Property Name="human_file_status" Type="bit" />
+          <Property Name="delete_status" Type="smallint" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“HR_DB .dbo.human_file_dig”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -563,8 +561,6 @@
           <Property Name="check_comment" Type="text" />
           <Property Name="remark" Type="text" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“HR_DB .dbo.salary_standard_details”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="salary_standard_details">
           <Key>
             <PropertyRef Name="sdt_id" />
@@ -619,7 +615,11 @@
           <EntitySet Name="config_public_char" EntityType="Self.config_public_char" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="config_question_first_kind" EntityType="Self.config_question_first_kind" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="config_question_second_kind" EntityType="Self.config_question_second_kind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engage_interview" EntityType="Self.engage_interview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engage_major_release" EntityType="Self.engage_major_release" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="engage_resume" EntityType="Self.engage_resume" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="human_file" EntityType="Self.human_file" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="salary_standard_details" EntityType="Self.salary_standard_details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="bonus" EntityType="Self.bonus" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -690,113 +690,6 @@
     [engage_exam_details].[second_kind_name] AS [second_kind_name], 
     [engage_exam_details].[question_amount] AS [question_amount]
     FROM [dbo].[engage_exam_details] AS [engage_exam_details]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="engage_interview" EntityType="Self.engage_interview" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [engage_interview].[ein_id] AS [ein_id], 
-    [engage_interview].[human_name] AS [human_name], 
-    [engage_interview].[interview_amount] AS [interview_amount], 
-    [engage_interview].[human_major_kind_id] AS [human_major_kind_id], 
-    [engage_interview].[human_major_kind_name] AS [human_major_kind_name], 
-    [engage_interview].[human_major_id] AS [human_major_id], 
-    [engage_interview].[human_major_name] AS [human_major_name], 
-    [engage_interview].[image_degree] AS [image_degree], 
-    [engage_interview].[native_language_degree] AS [native_language_degree], 
-    [engage_interview].[foreign_language_degree] AS [foreign_language_degree], 
-    [engage_interview].[response_speed_degree] AS [response_speed_degree], 
-    [engage_interview].[EQ_degree] AS [EQ_degree], 
-    [engage_interview].[IQ_degree] AS [IQ_degree], 
-    [engage_interview].[multi_quality_degree] AS [multi_quality_degree], 
-    [engage_interview].[register] AS [register], 
-    [engage_interview].[checker] AS [checker], 
-    [engage_interview].[registe_time] AS [registe_time], 
-    [engage_interview].[check_time] AS [check_time], 
-    [engage_interview].[resume_id] AS [resume_id], 
-    [engage_interview].[result] AS [result], 
-    [engage_interview].[interview_comment] AS [interview_comment], 
-    [engage_interview].[check_comment] AS [check_comment], 
-    [engage_interview].[interview_status] AS [interview_status], 
-    [engage_interview].[check_status] AS [check_status]
-    FROM [dbo].[engage_interview] AS [engage_interview]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="engage_major_release" EntityType="Self.engage_major_release" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [engage_major_release].[mre_id] AS [mre_id], 
-    [engage_major_release].[first_kind_id] AS [first_kind_id], 
-    [engage_major_release].[first_kind_name] AS [first_kind_name], 
-    [engage_major_release].[second_kind_id] AS [second_kind_id], 
-    [engage_major_release].[second_kind_name] AS [second_kind_name], 
-    [engage_major_release].[third_kind_id] AS [third_kind_id], 
-    [engage_major_release].[third_kind_name] AS [third_kind_name], 
-    [engage_major_release].[major_kind_id] AS [major_kind_id], 
-    [engage_major_release].[major_kind_name] AS [major_kind_name], 
-    [engage_major_release].[major_id] AS [major_id], 
-    [engage_major_release].[major_name] AS [major_name], 
-    [engage_major_release].[human_amount] AS [human_amount], 
-    [engage_major_release].[engage_type] AS [engage_type], 
-    [engage_major_release].[deadline] AS [deadline], 
-    [engage_major_release].[register] AS [register], 
-    [engage_major_release].[changer] AS [changer], 
-    [engage_major_release].[regist_time] AS [regist_time], 
-    [engage_major_release].[change_time] AS [change_time], 
-    [engage_major_release].[major_describe] AS [major_describe], 
-    [engage_major_release].[engage_required] AS [engage_required]
-    FROM [dbo].[engage_major_release] AS [engage_major_release]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="engage_resume" EntityType="Self.engage_resume" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [engage_resume].[res_id] AS [res_id], 
-    [engage_resume].[human_name] AS [human_name], 
-    [engage_resume].[engage_type] AS [engage_type], 
-    [engage_resume].[human_address] AS [human_address], 
-    [engage_resume].[human_postcode] AS [human_postcode], 
-    [engage_resume].[human_major_kind_id] AS [human_major_kind_id], 
-    [engage_resume].[human_major_kind_name] AS [human_major_kind_name], 
-    [engage_resume].[human_major_id] AS [human_major_id], 
-    [engage_resume].[human_major_name] AS [human_major_name], 
-    [engage_resume].[human_telephone] AS [human_telephone], 
-    [engage_resume].[human_homephone] AS [human_homephone], 
-    [engage_resume].[human_mobilephone] AS [human_mobilephone], 
-    [engage_resume].[human_email] AS [human_email], 
-    [engage_resume].[human_hobby] AS [human_hobby], 
-    [engage_resume].[human_specility] AS [human_specility], 
-    [engage_resume].[human_sex] AS [human_sex], 
-    [engage_resume].[human_religion] AS [human_religion], 
-    [engage_resume].[human_party] AS [human_party], 
-    [engage_resume].[human_nationality] AS [human_nationality], 
-    [engage_resume].[human_race] AS [human_race], 
-    [engage_resume].[human_birthday] AS [human_birthday], 
-    [engage_resume].[human_age] AS [human_age], 
-    [engage_resume].[human_educated_degree] AS [human_educated_degree], 
-    [engage_resume].[human_educated_years] AS [human_educated_years], 
-    [engage_resume].[human_educated_major] AS [human_educated_major], 
-    [engage_resume].[human_college] AS [human_college], 
-    [engage_resume].[human_idcard] AS [human_idcard], 
-    [engage_resume].[human_birthplace] AS [human_birthplace], 
-    [engage_resume].[demand_salary_standard] AS [demand_salary_standard], 
-    [engage_resume].[human_history_records] AS [human_history_records], 
-    [engage_resume].[remark] AS [remark], 
-    [engage_resume].[recomandation] AS [recomandation], 
-    [engage_resume].[human_picture] AS [human_picture], 
-    [engage_resume].[attachment_name] AS [attachment_name], 
-    [engage_resume].[check_status] AS [check_status], 
-    [engage_resume].[register] AS [register], 
-    [engage_resume].[regist_time] AS [regist_time], 
-    [engage_resume].[checker] AS [checker], 
-    [engage_resume].[check_time] AS [check_time], 
-    [engage_resume].[interview_status] AS [interview_status], 
-    [engage_resume].[total_points] AS [total_points], 
-    [engage_resume].[test_amount] AS [test_amount], 
-    [engage_resume].[test_checker] AS [test_checker], 
-    [engage_resume].[test_check_time] AS [test_check_time], 
-    [engage_resume].[pass_register] AS [pass_register], 
-    [engage_resume].[pass_regist_time] AS [pass_regist_time], 
-    [engage_resume].[pass_checker] AS [pass_checker], 
-    [engage_resume].[pass_check_time] AS [pass_check_time], 
-    [engage_resume].[pass_check_status] AS [pass_check_status], 
-    [engage_resume].[pass_checkComment] AS [pass_checkComment], 
-    [engage_resume].[pass_passComment] AS [pass_passComment]
-    FROM [dbo].[engage_resume] AS [engage_resume]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="engage_subjects" EntityType="Self.engage_subjects" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -978,16 +871,6 @@
     [salary_standard].[remark] AS [remark]
     FROM [dbo].[salary_standard] AS [salary_standard]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="salary_standard_details" EntityType="Self.salary_standard_details" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [salary_standard_details].[sdt_id] AS [sdt_id], 
-    [salary_standard_details].[standard_id] AS [standard_id], 
-    [salary_standard_details].[standard_name] AS [standard_name], 
-    [salary_standard_details].[item_id] AS [item_id], 
-    [salary_standard_details].[item_name] AS [item_name], 
-    [salary_standard_details].[salary] AS [salary]
-    FROM [dbo].[salary_standard_details] AS [salary_standard_details]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="training" EntityType="Self.training" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [training].[tra_id] AS [tra_id], 
@@ -1010,8 +893,7 @@
     FROM [dbo].[training] AS [training]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HR_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1172,6 +1054,7 @@
           <Property Name="delete_time" Type="DateTime" Precision="3" />
           <Property Name="recovery_time" Type="DateTime" Precision="3" />
           <Property Name="human_file_status" Type="Boolean" />
+          <Property Name="delete_status" Type="Int16" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -1366,6 +1249,9 @@
           <Property Name="pass_check_status" Type="Int16" />
           <Property Name="pass_checkComment" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="pass_passComment" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="check_status_sx" Type="Int16" />
+          <Property Name="Staff_files" Type="Int16" />
+          <Property Name="Staff_files_dj" Type="Int16" />
         </EntityType>
         <EntityType Name="engage_subjects">
           <Key>
@@ -1725,6 +1611,7 @@
           <EntitySetMapping Name="human_file">
             <EntityTypeMapping TypeName="HR_DBModel.human_file">
               <MappingFragment StoreEntitySet="human_file">
+                <ScalarProperty Name="delete_status" ColumnName="delete_status" />
                 <ScalarProperty Name="huf_id" ColumnName="huf_id" />
                 <ScalarProperty Name="human_id" ColumnName="human_id" />
                 <ScalarProperty Name="first_kind_id" ColumnName="first_kind_id" />
@@ -1939,6 +1826,9 @@
           <EntitySetMapping Name="engage_resume">
             <EntityTypeMapping TypeName="HR_DBModel.engage_resume">
               <MappingFragment StoreEntitySet="engage_resume">
+                <ScalarProperty Name="Staff_files_dj" ColumnName="Staff_files_dj" />
+                <ScalarProperty Name="Staff_files" ColumnName="Staff_files" />
+                <ScalarProperty Name="check_status_sx" ColumnName="check_status_sx" />
                 <ScalarProperty Name="res_id" ColumnName="res_id" />
                 <ScalarProperty Name="human_name" ColumnName="human_name" />
                 <ScalarProperty Name="engage_type" ColumnName="engage_type" />

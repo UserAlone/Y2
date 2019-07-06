@@ -65,5 +65,8 @@ namespace Model
         public Nullable<short> pass_check_status { get; set; }
         public string pass_checkComment { get; set; }
         public string pass_passComment { get; set; }
+        public Nullable<short> check_status_sx { get; set; }
+        public Nullable<short> Staff_files { get; set; }
+        public Nullable<short> Staff_files_dj { get; set; }
     }
 }

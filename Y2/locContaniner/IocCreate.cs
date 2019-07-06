@@ -25,7 +25,7 @@ namespace locContaniner
         {
             UnityContainer ioc = new UnityContainer();
             ExeConfigurationFileMap exf = new ExeConfigurationFileMap();
-            exf.ExeConfigFilename = @"../UI/Unity.config";
+            exf.ExeConfigFilename = System.AppDomain.CurrentDomain.BaseDirectory + "/Unity.config";
             Configuration cf = ConfigurationManager.OpenMappedExeConfiguration(exf, ConfigurationUserLevel.None);
             UnityConfigurationSection cfs = (UnityConfigurationSection)cf.GetSection("unity");
             ioc.LoadConfiguration(cfs, name);
