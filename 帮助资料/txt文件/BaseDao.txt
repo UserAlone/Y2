@@ -1,0 +1,95 @@
+         //只能单表查询
+        //select * from VipGrade
+        public List<T> QueryAll<T>()
+        {
+            List<T> list = new List<T>();
+            Type type = typeof(T);
+            string tableName = type.Name; //获取查询表明
+            string sql = string.Format("select * from {0}", tableName);
+            SqlDataReader reader = DBHelper.MyReader(sql, null);
+            while (reader.Read())
+            {
+                T t = Activator.CreateInstance<T>();   //根据反射创建实列对象
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    string sName = reader.GetName(i); //获取数据查询出的列名
+                    foreach (PropertyInfo item in type.GetProperties())
+                    {
+                        if (sName == item.Name)
+                        {
+                            object o = reader[item.Name];
+                            item.SetValue(t, o, null);
+                        }
+                    }
+                }
+                list.Add(t);
+            }
+            reader.Close();
+            return list;
+        }
+
+        public int Add(ModelBase mb)
+        {
+            //insert into RoomType()values()
+            Type type = mb.GetType();
+            string tableName = type.Name;
+            string sName = string.Empty;
+            string args = string.Empty;
+            SqlParameter[] sps = new SqlParameter[mb.GetLength()];
+            for (int i = 0; i < sps.Length; i++)
+            {
+                sName += mb.GetName(i) + ",";
+                args += "@" + mb.GetName(i) + ",";
+                PropertyInfo p = type.GetProperty(mb.GetName(i));
+                object o = p.GetValue(mb, null);
+                SqlParameter sp = new SqlParameter("@" + mb.GetName(i), o);
+                sps[i] = sp;
+            }
+            sName = sName.Remove(sName.Length - 1, 1);
+            args = args.Remove(args.Length - 1, 1);
+            string sql = string.Format("insert into {0}({1})values({2})", tableName, sName, args);
+            return DBHelper.MyExecuteNonQuery(sql, sps);
+        }
+
+        public int Update(ModelBase mb)
+        {
+            //update RoomType set RTName='' where RTID=
+            Type type = mb.GetType();
+            string tableName = type.Name;
+            string args = string.Empty;
+            string keyName = GetKeyName(type);
+            SqlParameter[] sps = new SqlParameter[mb.GetLength()];
+            for (int i = 0; i < sps.Length; i++)
+            {
+                string a = mb.GetName(i);
+                if (mb.GetName(i)!=keyName)
+                {
+                    args += mb.GetName(i) + "=@" + mb.GetName(i) + ",";
+                }
+                PropertyInfo p = type.GetProperty(mb.GetName(i));
+                object o = p.GetValue(mb, null);
+                SqlParameter sp = new SqlParameter("@" + mb.GetName(i), o);
+                sps[i] = sp;
+            }
+            args = args.Remove(args.Length - 1, 1);
+            string sql = string.Format("update {0} set {1} where {2}=@{2}", tableName, args, keyName);
+            return DBHelper.MyExecuteNonQuery(sql, sps);
+        }
+
+        public int Delete<T>(object o)
+        {
+            //delete RoomType where RTID=?
+            Type type=typeof(T);
+            string tableName = type.Name;
+            string keyName = GetKeyName(type);
+            string sql = string.Format("delete {0} where {1}=@{1}",tableName,keyName);
+            SqlParameter[] sps = new SqlParameter[1];
+            sps[0] = new SqlParameter("@"+keyName,o);
+            return DBHelper.MyExecuteNonQuery(sql, sps);
+        }
+
+        public string GetKeyName(Type type)
+        {
+            PKAttribute pk = (PKAttribute)type.GetCustomAttributes(typeof(PKAttribute), false)[0];
+            return pk.PK;
+        }

@@ -1,0 +1,77 @@
+﻿using Model;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Runtime.Remoting.Messaging;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BAL
+{
+   
+        public class BaseDao
+        {
+        HR_DBEntities hde = CreateDBContent();
+            public static HR_DBEntities CreateDBContent()
+            {
+
+            HR_DBEntities at = CallContext.GetData("s") as HR_DBEntities;
+                if (at == null)
+                {
+                    at = new HR_DBEntities();
+                    CallContext.SetData("s", at);
+                }
+                return at;
+
+            }
+            //查询全部
+            public List<T> SelectAll<T>() where T : class
+            {
+                return hde.Set<T>().Select(e => e).ToList();
+            }
+            //按条件查询
+            public List<T> SelectWhere<T>(Expression<Func<T, bool>> where) where T : class
+            {
+                return hde.Set<T>().Where(where)
+                      .Select(e => e)
+                      .ToList();
+            }
+        //分页
+        public List<T> FenYe<T, K>(Expression<Func<T, K>> order, Expression<Func<T, bool>> where, out int rows,out int pages, int currentPage, int pageSize) where T : class
+        {
+
+            var data = hde.Set<T>().OrderBy(order).Where(where);
+            rows = data.Count();
+            pages = (data.Count() + pageSize - 1) / pageSize;
+            return data.Skip((currentPage - 1) * pageSize)
+                 .Take(pageSize)
+                 .ToList();
+        }
+        //添加
+        public int Add<T>(T t) where T : class
+            {
+                hde.Entry<T>(t).State = EntityState.Added;
+                return hde.SaveChanges();
+            }
+            //修改
+            public int Update<T>(T t) where T : class
+            {
+                hde.Entry<T>(t).State = EntityState.Modified;
+                return hde.SaveChanges();
+            }
+            //删除
+            public int Delete<T>(T t) where T : class
+            {
+                hde.Entry<T>(t).State = EntityState.Deleted;
+                return hde.SaveChanges();
+            }
+
+            public int AUD(string sql)
+            {
+                return hde.Database.ExecuteSqlCommand(sql);
+            }
+        }
+
+    }

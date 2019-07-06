@@ -1,0 +1,27 @@
+ //SQLserver连接字符串
+<connectionStrings>
+    <add name="数据库" connectionString="server=.;database=数据库;uid=sa;pwd=123456"/>
+</connectionStrings>
+
+//MySQL连接字符串
+<connectionStrings>
+    <add name="数据库" connectionString="server=localhost;database=数据库;uid=root;pwd=root"/>
+</connectionStrings>
+
+//SQLserver分页
+select top 10 * from(select ROW_NUMBER()over(order by id) as rownumber,* from Student)A where rownumber>(当前页码-1)*页面大小
+
+//MySQL分页
+select * from 表明 limit 开始下标 数据大小
+
+//跳转
+Response.Write("<script language='javascript'>");
+Response.Write("alert('跳转成功!!!');");
+Response.Write("location.href='Update';");
+Response.Write("</script>");
+
+//验证码字符
+0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM
+
+//页面跳转
+<script>alert('删除成功');window.location.href='/Home/Index'</script>

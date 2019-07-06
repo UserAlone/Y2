@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<body>
+		<div id="app">
+		   <p>输入字符串: <input v-model="message"/></p>
+		   <p>原始字符串: {{ message }}</p>
+		   <p>反转字符串: {{ message.split('').reverse().join('') }}</p>
+           <p>计算后反转字符串: {{ reversedMessage2() }}</p>
+		</div>
+	</body>
+</html>
+<!--
+computed vs methods
+我们可以使用 methods 来替代 computed，效果上两个都是一样的，
+但是 computed 是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。
+而使用 methods ，在重新渲染的时候，函数总会重新调用执行。
+可以说使用 computed 性能会更好，但是如果你不希望缓存，你可以使用 methods 属性。
+-->
+<script type="text/javascript">
+		var app = new Vue({
+		  el: '#app',
+		  data: {
+		    message: 'Runoob!'
+		  },
+		  methods: {
+			  reversedMessage2: function () {
+			    return this.message.split('').reverse().join('') ;
+			  }
+		  }
+		})
+</script>

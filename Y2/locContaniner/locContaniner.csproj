@@ -43,25 +43,25 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="Unity.Abstractions">
-      <HintPath>C:\Users\周波\Desktop\配置\c#和js配置东西\Unity\Unity.5.8.11\lib\net45\Unity.Abstractions.dll</HintPath>
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Configuration">
-      <HintPath>C:\Users\周波\Desktop\配置\c#和js配置东西\Unity\Unity.5.8.11\lib\net45\Unity.Configuration.dll</HintPath>
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Container">
-      <HintPath>C:\Users\周波\Desktop\配置\c#和js配置东西\Unity\Unity.5.8.11\lib\net45\Unity.Container.dll</HintPath>
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.Container.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Interception">
-      <HintPath>C:\Users\周波\Desktop\配置\c#和js配置东西\Unity\Unity.5.8.11\lib\net45\Unity.Interception.dll</HintPath>
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.Interception.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Interception.Configuration">
-      <HintPath>C:\Users\周波\Desktop\配置\c#和js配置东西\Unity\Unity.5.8.11\lib\net45\Unity.Interception.Configuration.dll</HintPath>
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.Interception.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RegistrationByConvention">
-      <HintPath>C:\Users\周波\Desktop\配置\c#和js配置东西\Unity\Unity.5.8.11\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ServiceLocation">
-      <HintPath>C:\Users\周波\Desktop\配置\c#和js配置东西\Unity\Unity.5.8.11\lib\net45\Unity.ServiceLocation.dll</HintPath>
+      <HintPath>..\..\..\Y2C#作业\ASP.Net\Business\isoBook\bin\Debug\Unity.ServiceLocation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+/*外部样式导入*/
+@import url("css/index.css");
+			
+/*
+整个表格设置字体：
+*/
+.v-table-class{
+   /*font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+}
+/*
+表格表头设置
+*/
+.v-table-title-class {
+   /*font-weight: normal;
+    color: #333333;
+    text-shadow: 0 0 0 #333333;*/
+}
+/*
+表格表体设置
+*/
+.v-table-body-class {
+  /*font-weight: normal;
+    color: #333333;
+    text-shadow: 0 0 0 #333333;*/
+}
+/*
+表格footer设置
+*/
+.v-table-footer-class {
+  /*font-weight: normal;
+    color: #333333;
+    text-shadow: 0 0 0 #333333;*/
+}
+/*
+配置表格内部滚动条样式
+如果设置了全局滚动条样式，则自动依赖全局样式，如果需要针对表格内部设置则可以通过
+.v-scrollbar-wrap设置。
+滚动条的组成：
+ ::-webkit-scrollbar         滚动条整体部分
+ ::-webkit-scrollbar-thumb             滚动条里面的小方块，能上下左右移动（取决于是垂直滚动条还是水平滚动条）
+ ::-webkit-scrollbar-track      滚动条的轨道（里面装有thumb）
+ ::-webkit-scrollbar-button      滚动条轨道两端的按钮，允许通过点击微调小方块的位置
+ ::-webkit-scrollbar-track-piece    内层轨道，滚动条中间部分（除去）
+ ::-webkit-scrollbar-corner     边角，及两个滚动条的交汇处
+ ::-webkit-resizer       两个滚动条的交汇处上用于通过拖动调整元素大小的小控件
+*/
+	.v-scrollbar-wrap::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
+
+    .v-scrollbar-wrap::-webkit-scrollbar
+    {
+        height:12px;
+        width:10px;
+        background-color: #F5F5F5;
+    }
+
+    .v-scrollbar-wrap::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #666;
+    }
+		</style>
+		
+<script src="js/jquery-1.12.4.js"></script>		
+<script src="js/vue.js"></script>
+<script src="js/vue-router.js" ></script>
+<script src="js/index.js"></script>
+
+	</head>
+	
+	<body>
+		<div id="app">
+			<template>
+			    <div>
+			        <v-table is-horizontal-resize
+			                 style="width:100%"
+			                 :height="200"
+			                 :columns="columns"
+			                 :table-data="tableData">
+			        </v-table>
+			    </div>
+			</template>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var Main ={
+        name: 'frozen-title-columns',
+        data(){
+            return {
+                 tableData: [
+                           {"name":"赵伟","tel":"156*****1987","hobby":"钢琴、书法、唱歌","address":"上海市黄浦区金陵东路569号17楼"},
+                           {"name":"李伟","tel":"182*****1538","hobby":"钢琴、书法、唱歌","address":"上海市奉贤区南桥镇立新路12号2楼"},
+                           {"name":"孙伟","tel":"161*****0097","hobby":"钢琴、书法、唱歌","address":"上海市崇明县城桥镇八一路739号"},
+                           {"name":"周伟","tel":"197*****1123","hobby":"钢琴、书法、唱歌","address":"上海市青浦区青浦镇章浜路24号"},
+                           {"name":"吴伟","tel":"183*****6678","hobby":"钢琴、书法、唱歌","address":"上海市松江区乐都西路867-871号"}
+                    ],
+                    columns: [
+                           {field: 'name', title:'姓名', width: 150, titleAlign: 'center',columnAlign:'center', isFrozen: true},
+                           {field: 'tel', title: '手机号码', width: 280, titleAlign: 'center',columnAlign:'center',isResize:true},
+                           {field: 'hobby', title: '爱好', width: 380, titleAlign: 'center',columnAlign:'center',isResize:true},
+                           {field: 'address', title: '地址', width: 430, titleAlign: 'center',columnAlign:'left',isResize:true}
+                    ]
+            }
+        }
+    }
+var Ctor = Vue.extend(Main)
+new Ctor().$mount('#app')
+	
+</script>

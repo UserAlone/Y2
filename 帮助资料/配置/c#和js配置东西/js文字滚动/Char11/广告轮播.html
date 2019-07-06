@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>  * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .wrap {
+        height: 170px;
+        width: 490px;
+        margin: 60px auto;
+        overflow: hidden;/*超出边界的地方隐藏*/
+        position: relative;
+        margin: 100px auto;
+    }
+
+    .wrap ul {
+        position: absolute;
+    }
+
+    .wrap ul li {
+        height: 170px;
+    }
+
+    .wrap ol {
+        position: absolute;
+        right: 5px;
+        bottom: 10px;
+    }
+
+    .wrap ol li {
+        height: 20px;
+        width: 20px;
+        background: #ccc;
+        border: solid 1px #666;
+        margin-left: 5px;
+        color: #000;
+        float: left;
+        line-height: 20px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .wrap ol .on {
+        background: #E97305;/*c*/
+        color: #fff;/*字体白色*/
+    }
+
+    .wrap ol .off {
+        background: #ccc;
+        color: #000;
+    }
+    </style>
+    <script src="js/jquery-1.8.0.min.js"></script>
+
+
+</head>
+<body>
+<div class="wrap" id='wrap'>
+    <ul id="pic">
+        <li><img src="images/dd_scroll_1.jpg" alt=""></li>
+        <li><img src="images/dd_scroll_2.jpg" alt=""></li>
+        <li><img src="images/dd_scroll_3.jpg" alt=""></li>
+        <li><img src="images/dd_scroll_4.jpg" alt=""></li>
+        <li><img src="images/dd_scroll_5.jpg" alt=""></li>
+        <li><img src="images/dd_scroll_6.jpg" alt=""></li>
+    </ul>
+    <ol id="list">
+        <li class="on">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ol>
+</div>
+<script type="text/javascript">
+    $(function () {
+        function changeImage() {
+            var index=0;//定义公共角标
+            var stop=false;//表示动画是否开始的标记 默认开始就执行动画
+            //获取全部的图片li
+          var $li= $("#pic").children("li");
+          var $page=$("#list").children("li");
+
+          //给数字1背景处理
+            $page.eq(index).addClass("on").siblings().removeClass("on");
+            $page.hover(function
+
+
+                () {
+                //鼠标放上去
+                stop=true;//停止动画
+                index=$page.index($(this));//获取当前悬浮对应数字的角标
+                //找到图片对应的角标，将当前动画停止，该对应图片显示，其他隐藏
+                $li.eq(index).stop(true,true).fadeIn().siblings().fadeOut();
+                $(this).addClass("on").siblings().removeClass("on");
+
+            },function () {
+                //鼠标的移出
+                stop=false;//开始动画
+            });
+
+            //定时函数
+            setInterval(function () {
+                if(stop){
+                    return ;//根据标记判断是否开始动画
+                }
+                index++;
+                //角标自增超过图片总数，重新归0
+                if(index>=$li.size()){
+                    index=0;
+                }
+                $li.eq(index).stop(true,true).fadeIn().siblings().fadeOut();
+                $page.eq(index).addClass("on").siblings().removeClass("on");
+
+            },2000);
+        }
+        //调用函数
+        changeImage();
+    })
+
+
+    
+</script>
+</body>
+</html>

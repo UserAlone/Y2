@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Js/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <link href="Js/rating_simple.css" rel="stylesheet" type="text/css" />
+    <script src="Js/rating_simple.js" type="text/javascript"></script>
+    
+    <script type="text/javascript">
+
+        $(function ()
+        {
+
+            $("#rating_simple").webwidget_rating_simple({
+                rating_star_length: '5',
+                rating_initial_value: '',//设置星星的默认值
+                rating_function_name: '',
+                directory: '/js'
+            });
+
+            $("#Button1").click(function ()
+            {
+
+                var s = $("#rating_simple").val();
+                alert(s);
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+<div id="rating_simple"></div>
+    <input id="Button1" type="button" value="button" />
+</body>
+</html>

@@ -1,0 +1,22 @@
+ALTER PROCEDURE  [dbo].[proc_PageFenYe]
+@CurrentPage int,
+@PageSize int,
+@Where varchar(400), 
+@KeyName varchar(20),
+@TableName varchar(20),
+@TotalPage int output,
+@TotalCount int output
+as
+	declare @sql nvarchar(2000)
+	set @sql='select top '+str(@pageSize)+' *
+	from 
+	(select  *,ROW_NUMBER() over(order by '+@KeyName+') rowIndex
+	from '+@TableName+'  '+@Where+') a
+	where rowIndex>'+str((@CurrentPage-1)*@PageSize)+''
+	exec sp_executesql @sql
+	----------------------------------------
+	set @sql='select @rows=count(*) from '+@TableName+' '+@Where
+	exec sp_executesql @sql,N'@rows int output',@TotalCount output
+	
+	set @TotalPage=(@TotalCount-1)/@PageSize+1--×ÜÒ³Êý
+go

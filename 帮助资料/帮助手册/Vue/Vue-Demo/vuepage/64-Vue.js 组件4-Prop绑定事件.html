@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<body>
+		<div id="app">
+		    <div id="counter-event-example">
+		      <button-counter ></button-counter>
+		      <button-counter ></button-counter>
+		    </div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	Vue.component('button-counter', {
+	  template: '<button v-on:click="incrementHandler">{{counter}}</button>',
+	  data: function () { // 组件内的数据  必须是 function
+	    return {
+	      counter: 0
+	    }
+	  },  
+	  methods: {  // 组件绑定的方法 
+	    incrementHandler: function () {
+	      this.counter += 1
+	    }
+	  }
+	})
+	var app = new Vue({
+	  el: '#counter-event-example'
+	})
+</script>
