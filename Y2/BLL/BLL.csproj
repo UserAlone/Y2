@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="human_fileBLL.cs" />
+    <Compile Include="major_changeBLL.cs" />
+    <Compile Include="RoleRigBLL.cs" />
+    <Compile Include="RoleUsBLL.cs" />
     <Compile Include="config_file_first_kindServices.cs" />
     <Compile Include="config_file_second_kindServices.cs" />
     <Compile Include="config_file_third_kindServices.cs" />
@@ -75,6 +79,25 @@
       <Project>{3fd11e36-b0a7-4083-89e4-f70f3f725906}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <Compile Include="UserBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IBLL\IBLL.csproj">
+      <Project>{09dc6638-3eab-4d56-a2cf-e4ee109b869c}</Project>
+      <Name>IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IDAO\IDAO.csproj">
+      <Project>{e5541d16-e77b-416b-8163-e0b5397f52a8}</Project>
+      <Name>IDAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\locContaniner\locContaniner.csproj">
+      <Project>{483cd230-b60c-4741-863a-30a81ea43cb4}</Project>
+      <Name>locContaniner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{3fd11e36-b0a7-4083-89e4-f70f3f725906}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -84,4 +107,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-</Project>
+ </Project>

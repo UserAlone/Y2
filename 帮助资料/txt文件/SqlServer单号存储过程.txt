@@ -1,0 +1,18 @@
+create proc [dbo].[procDanHao]
+@danhao varchar(14) output
+as
+	declare @d varchar(14)
+	select @d=max(Oid) from dbo.Orders
+	where convert(varchar(10),Odate,120)=convert(varchar(10),getdate(),120)
+	if (@d is not null)
+		begin
+			print 'сп'
+			--'DD201403190001'->'0001'->1+1>2->(2+10000=10002->0002)
+			set @danhao='DD'+replace(convert(varchar(10),getdate(),120),'-','')+ right(str(convert(int,right(@d,4))+10001),4)
+		end
+	else
+		begin
+			print 'нч'
+			set @danhao='DD'+replace(convert(varchar(10),getdate(),120),'-','')+'0001'
+			print @danhao
+		end

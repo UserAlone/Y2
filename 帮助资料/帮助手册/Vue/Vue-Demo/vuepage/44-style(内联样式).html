@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<body>
+		<div id="app1">
+			<div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">菜鸟教程</div>
+		</div>
+		<div id="app2">
+		  <div v-bind:style="styleObject">菜鸟教程</div>
+		</div>
+		<!--
+		  v-bind:style 可以使用数组将多个样式对象应用到一个元素上：
+        -->
+        <div id="app3">
+		  <div v-bind:style="[baseStyles, overridingStyles]">菜鸟教程</div>
+		</div>
+
+	</body>
+</html>
+<script type="text/javascript">
+		var app1 = new Vue({
+		  el: '#app1',
+		  data: {
+		    activeColor: 'green',
+			fontSize: 30
+		  }
+		}) ;
+		
+		var app2 = new Vue({
+		  el: '#app2',
+		  data: {
+		    styleObject: {
+		      color: 'red',
+		      fontSize: '30px'
+		    }
+		  }
+		}) ;
+		
+		var app3 = new Vue({
+		  el: '#app3',
+		  data: {
+		    baseStyles: {
+		      color: 'blue',
+		      fontSize: '30px'
+		    },
+			overridingStyles: {
+		      'font-weight': 'bold'
+		    }
+		  }
+		}) ;
+</script>

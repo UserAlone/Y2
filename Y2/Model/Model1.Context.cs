@@ -18,6 +18,7 @@ namespace Model
         public HR_DBEntities()
             : base("name=HR_DBEntities")
         {
+            Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -35,6 +36,9 @@ namespace Model
         public virtual DbSet<config_question_first_kind> config_question_first_kind { get; set; }
         public virtual DbSet<config_question_second_kind> config_question_second_kind { get; set; }
         public virtual DbSet<human_file> human_file { get; set; }
+        public virtual DbSet<Quan> Quan { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<RoleQuan> RoleQuan { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<bonus> bonus { get; set; }
         public virtual DbSet<engage_answer> engage_answer { get; set; }
@@ -52,5 +56,6 @@ namespace Model
         public virtual DbSet<salary_standard> salary_standard { get; set; }
         public virtual DbSet<salary_standard_details> salary_standard_details { get; set; }
         public virtual DbSet<training> training { get; set; }
+        public virtual DbSet<RoleUs> RoleUs { get; set; }
     }
 }

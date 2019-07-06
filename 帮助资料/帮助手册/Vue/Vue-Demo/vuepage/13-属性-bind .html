@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		.class1{
+		  background: #444;
+		  color: #eee;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery-1.12.4.js" ></script>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<body>
+		<div id="app">
+		  <label for="r1">修改颜色</label><input type="checkbox" v-model="showclass" id="r1">
+		  <br><br>
+		  <div v-bind:class="{class1: showclass}">
+		    directiva v-bind:class
+		  </div>
+		  <!--
+		  	Mustache (双大括号写法)不能在 HTML 属性中使用，应使用 v-bind 指令：
+            <div v-bind:id="dynamicId"></div>
+		    2:v-bind用于绑定属性和数据 ，其缩写为“ : ” 也就是v-bind:id === :id
+		  -->
+		  <div v-bind:id="dynamicId">
+		  	dynamicId
+		  </div>
+		  <div>
+		  	<!--
+		  		这对布尔值的属性也有效 —— 如果条件被求值为 false 的话该属性会被移除：
+				<button v-bind:disabled="someDynamicCondition">Button</button>
+		  	-->
+		   <button v-bind:disabled="someDynamicCondition">Button</button>
+		  </div>
+		  <div>
+		  	<!-- bind 缩写 	
+		  		-- 完整语法 --
+				<a v-bind:href="url"></a>
+				-- 缩写 --
+				<a :href="url"></a>
+		  	-->
+		  	<h2><a :href="url" :target="target">菜鸟教程</a></h2>
+		  </div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	var app = new Vue({
+	  el: '#app',
+	  data:{
+	  	showclass: false,
+	  	dynamicId:'ts1',
+	  	someDynamicCondition:true,
+	  	url:'http://www.runoob.com',
+        target:'_blank'
+	  }
+	});
+	
+	$(function(){
+		$('#ts1').click(function(){
+			alert($(this).html());
+			app.someDynamicCondition = false;
+		});
+		
+		$("button").click(function(){
+			alert($('#ts1').html());
+		});
+	})
+</script>

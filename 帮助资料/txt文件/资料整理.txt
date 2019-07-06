@@ -1,0 +1,160 @@
+第1天:
+1 什么是Vue.js
+
++ Vue.js 是目前最火的一个前端框架，React是最流行的一个前端框架（React除了开发网站，还可以开发手机App， Vue语法也是可以用于进行手机App开发的，需要借助于Weex）
+
++ Vue.js 是前端的**主流框架之一**，和Angular.js、React.js 一起，并成为前端三大主流框架！
+
++ Vue.js 是一套构建用户界面的框架，**只关注视图层**，它不仅易于上手，还便于与第三方库或既有项目整合。（Vue有配套的第三方类库，可以整合起来做大型项目的开发）
+
++ 前端的主要工作？主要负责MVC中的V这一层；主要工作就是和界面打交道，来制作前端页面效果；
+
+
+2 Node（后端）中的 MVC 与 前端中的 MVVM 之间的区别
+
+ + MVC 是后端的分层开发概念；
+ + MVVM是前端视图层的概念，主要关注于 视图层分离，也就是说：MVVM把前端的视图层，分为了 三部分 Model, View , VM ViewModel
+
+3 Vue之 - `基本的代码结构和`插值表达式`
+	3.1 V是指el指定的html元素;M是指data对应的数据 ;VM是指new Vue对象
+	3.2 插值表达式的语法：{{}}
+
+4 Vue指令之
+	4.1`v-text`和`v-html`
+	4.2 `v-bind`的三种用法
+
+		1. 直接使用指令`v-bind`
+
+		2. 使用简化指令`:`
+
+		3. 在绑定的时候，拼接绑定内容：`:title="btnTitle + ', 这是追加的内容'"`
+	4.3 v-on和跑马灯案例
+	4.4 v-model`和`双向数据绑定`简易计算器案例
+
+5 在Vue中使用样式
+
+
+
+5.1 使用class样式
+
+5.1.1 数组
+```
+<h1 :class="['red', 'thin']">这是一个邪恶的H1</h1>
+```
+
+5.1.2 数组中使用三元表达式
+```
+<h1 :class="['red', 'thin', isactive?'active':'']">这是一个邪恶的H1</h1>
+```
+
+5.1.3 数组中嵌套对象
+```
+<h1 :class="['red', 'thin', {'active': isactive}]">这是一个邪恶的H1</h1>
+```
+
+5.1.4 直接使用对象
+```
+<h1 :class="{red:true, italic:true, active:true, thin:true}">这是一个邪恶的H1</h1>
+```
+
+
+5.2 使用内联样式
+
+	5.2.1 直接在元素上通过 `:style` 的形式，书写样式对象
+```
+	<h1 :style="{color: 'red', 'font-size': '40px'}">这是一个善良的H1</h1>
+```
+
+	5.2.2 将样式对象，定义到 `data` 中，并直接引用到 `:style` 中
+ + 在data上定义样式：
+data: {
+        h1StyleObj: { color: 'red', 'font-size': '40px', 'font-weight': '200' }
+}
+```
+	5.2.3 在元素中，通过属性绑定的形式，将样式对象应用到元素中：
+```
+<h1 :style="h1StyleObj">这是一个善良的H1</h1>
+```
+
+	5.2.4 在 `:style` 中通过数组，引用多个 `data` 上的样式对象
+ + 在data上定义样式：
+```
+data: {
+        h1StyleObj: { color: 'red', 'font-size': '40px', 'font-weight': '200' },
+        h1StyleObj2: { fontStyle: 'italic' }
+}
+```
+ + 在元素中，通过属性绑定的形式，将样式对象应用到元素中：
+```
+<h1 :style="[h1StyleObj, h1StyleObj2]">这是一个善良的H1</h1>
+
+
+6 Vue指令之`v-for`和`key`属性
+
+6.1 迭代数组
+
+```
+<ul>
+  <li v-for="(item, i) in list">索引：{{i}} --- 姓名：{{item.name}} --- 年龄：{{item.age}}</li>
+</ul>
+```
+
+6.2 迭代对象中的属性
+
+```
+
+	<!-- 循环遍历对象身上的属性 -->
+
+    <div v-for="(val, key, i) in userInfo">{{val}} --- {{key}} --- {{i}}</div>
+
+```
+
+6.3 迭代数字
+
+```
+
+<p v-for="i in 10">这是第 {{i}} 个P标签</p>
+
+```
+---------------------------------------------------------------
+第2天
+1 生命周期函数
+	1.1beforeCreate():在beforeCreate生命周期函数执行时，data和methods中的数据还没有被初始化
+	1.2 created():	data和methods中的数据被初始化好了;如果要
+调用methods方法或者data数据时，最早，只能在created
+	1.3 beforeMount():表示模板已经在内存中编辑完成了，但是尚未把模板渲染到页面中(输出 el中元素的内容案例)
+	1.4 mounted():将内存中编译好的模板，真实的替换到浏览器的页面中去;只有执行完了mounted,就表示整个Vue实例已经初始化完毕了；此时组件已经脱离了创建阶段；进入到了运行阶段(输出 el中元素的内容案例)
+	1.5 beforeUpdate:数据被更新了，界面还没有被更新(通过按钮点击事件输出data中的msg和页面上元素的内容)
+	1.6 updated:数据被更新了，界面被更新了(通过按钮点击事件输出data中的msg和页面上元素的内容)
+	1.7 beforeDestroy:当执行beforeDestroy时，实例身上所有的data和所有的methods以及过滤器指令等都处于可用状态，此时，还没有真正执行销毁的过程
+	1.8 destoryed:当执行destoryed:时，组件已经被完全销毁了，此时，组件中所有的数据，方法，指令，过滤器....都已经不可用了
+
+
+2 [vue-resource 实现 get, post, jsonp请求](https://github.com/pagekit/vue-resource)
+除了 vue-resource 之外，还可以使用 `axios` 的第三方包实现实现数据的请求
+配置步骤: 直接在页面中，通过`script`标签，引入 `vue-resource` 的脚本文件；
+
+2.1 发送get请求：
+getInfo:function() { // get 方式获取数据
+  this.$http.get('http://127.0.0.1:8899/api/getlunbo').then(function(res){
+    console.log(res.body);
+  })
+}
+2.2. 发送post请求：
+```
+postInfo:function() {
+  var url = 'http://127.0.0.1:8899/api/post';
+  // post 方法接收三个参数：
+  // 参数1： 要请求的URL地址
+  // 参数2： 要发送的数据对象
+  // 参数3： 指定post提交的编码类型为 application/x-www-form-urlencoded
+  this.$http.post(url, { name: 'zs' }, { emulateJSON: true }).then(function(res) {
+    console.log(res.body);
+  });
+}
+
+
+
+
+	
+

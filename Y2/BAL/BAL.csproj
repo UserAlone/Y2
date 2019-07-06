@@ -62,6 +62,12 @@
     <Compile Include="engage_major_releaseDao.cs" />
     <Compile Include="engage_resumeDao.cs" />
     <Compile Include="human_fileDao.cs" />
+    <Compile Include="BaseDao.cs" />
+    <Compile Include="DBhelper.cs" />
+    <Compile Include="human_fileBAL.cs" />
+    <Compile Include="major_changeBAL.cs" />
+    <Compile Include="RoleRigBAL.cs" />
+    <Compile Include="RoleUsBAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="salary_standard_detailsDao.cs" />
     <Compile Include="userDao.cs" />
@@ -81,6 +87,24 @@
       <Project>{3fd11e36-b0a7-4083-89e4-f70f3f725906}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <Compile Include="UserBAL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IDAO\IDAO.csproj">
+      <Project>{e5541d16-e77b-416b-8163-e0b5397f52a8}</Project>
+      <Name>IDAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{3fd11e36-b0a7-4083-89e4-f70f3f725906}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -90,4 +114,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-</Project>
+ </Project>

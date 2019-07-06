@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<body>
+		<div id="app">
+		  <p>{{ message }}</p>
+		  <p>{{ message | capitalize }}</p>
+		  <p>{{ message | capitalize | params('arg1',5+5) }}</p>
+		</div>
+	</body>
+</html>
+<!--
+过滤器可以串联：
+{{ message | filterA | filterB }}
+过滤器是 JavaScript 函数，因此可以接受参数：
+{{ message | filterA('arg1', arg2) }}
+这里，message 是第一个参数，字符串 'arg1' 将传给过滤器作为第二个参数， 
+arg2 表达式的值将被求值然后传给过滤器作为第三个参数。
+-->
+<script type="text/javascript">
+		var app = new Vue({
+			  el: '#app',
+			  data: {
+				message: 'runoob'
+			  },
+			  filters: {
+			    capitalize: function (value) {
+			      if (!value) return ''
+			      value = value.toString()
+			      return value.charAt(0).toUpperCase() + value.slice(1)
+			    } ,
+			    params:function(value,arg1,arg2){
+			    	alert(value);
+			    	alert(arg1);
+			    	alert(arg2);
+			    	return 'params test';
+			    }
+			  }
+			})
+</script>

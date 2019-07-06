@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<script type="text/javascript" src="js/jquery-1.12.4.js" ></script>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<body>
+		<div id="app">
+		   <p>输入字符串: <input v-model="message"/></p>
+		   <p>原始字符串: {{ message }}</p>
+		   <p>反转字符串: {{ message.split('').reverse().join('') }}</p>
+           <p>计算后反转字符串: {{ reversedMessage }}</p>
+           <p>地址：{{ site }}</p>
+           <p><input type="button" value="改变地址" class="cu"/></p>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+		var app = new Vue({
+		  el: '#app',
+		  data: {
+		    message: 'Runoob!',
+		    name: 'Google',
+	        url: 'http://www.google.com' 
+		  },
+		  computed: {
+		     // 计算属性的 getter (默认)
+		     reversedMessage: function () {
+		       // `this` 指向 app 实例
+		       return this.message.split('').reverse().join('')
+		     },
+		     //  指定get,set
+		     site: {  
+		      // getter
+		      get: function () {
+		        return this.name + ' ' + this.url
+		      },
+		      // setter
+		      set: function (newValue) {
+		        var names = newValue.split(' ')
+		        this.name = names[0]
+		        this.url = names[names.length - 1]
+		      }
+		    }
+		  }
+		})
+		
+		//改变地址
+		$(function(){
+			$(".cu").click(function(){
+				app.site = '菜鸟教程 http://www.runoob.com';
+			});
+		})
+</script>

@@ -1,0 +1,16 @@
+
+Vue 中文网址
+http://doc.vue-js.com/
+http://www.runoob.com/vue2/vue-tutorial.html
+
+Vue Router 中文网址
+https://router.vuejs.org/zh/
+
+Vue cli 中文网址
+https://cli.vuejs.org/zh/
+
+vue-easytable
+https://github.com/huangshuwei/vue-easytable
+
+element(饿了吗后台ui)
+http://element-cn.eleme.io/#/zh-CN

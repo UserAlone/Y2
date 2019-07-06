@@ -1,0 +1,87 @@
+﻿@model Model.Users
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script type="text/javascript">
+    function dl(obj) {
+        if(obj=="ok"){
+            alert("登录");
+            window.location.href = "../Mian/Index";
+        }
+    }
+</script>
+
+
+@using (Ajax.BeginForm("Logion", new AjaxOptions() {HttpMethod="post",OnSuccess="dl" }))
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <table cellspacing=0 cellpadding=0 width=900 align=center border=0>
+            <tbody>
+                <tr>
+                    <td style="height: 105px">
+                        <img src="../images/login_11.gif" border=0>
+                    </td>
+                </tr>
+                <tr>
+                    <td background=../images/login_22.jpg height=300>
+                        <table height=300 cellpadding=0 width=900 border=0>
+                            <tbody>
+                                <tr>
+                                    <td colspan=2 height=35></td>
+                                </tr>
+                                <tr>
+                                    <td width=360></td>
+                                    <td>
+                                        <table cellspacing=0 cellpadding=2 border=0>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="height: 28px" width=80>
+                                                        登 录 名：
+                                                    </td>
+                                                    <td style="height: 28px" width=150>
+                                                        <input id="userName" name="user_name" style="width: 130px" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="height: 28px">
+                                                        登录密码：
+                                                    </td>
+                                                    <td style="height: 28px">
+                                                        <input id="userPassword" name="user_password" style="width: 130px" type="password" />
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style="height: 18px"></td>
+                                                    <td style="height: 18px"></td>
+                                                    <td style="height: 18px"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type="submit" value="登录" class="btn btn-default" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../images/login_33.jpg" border=0>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}
+<div>
+</div>

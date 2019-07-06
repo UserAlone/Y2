@@ -9,7 +9,7 @@ using IBLL;
 using BAL;
 using System.Configuration;
 using Microsoft.Practices.Unity.Configuration;
-
+using System.IO;
 namespace locContaniner
 {
     //ioc容器

@@ -1,0 +1,70 @@
+ //获取连接对象
+        public static MySqlConnection GetSqlconnection()
+        {
+            return new MySqlConnection(ConfigurationManager.ConnectionStrings["studentdb"].ConnectionString);
+        }
+
+
+        //增删改
+        public static int MyExecuteNonQuery(string sql, MySqlParameter[] sps)
+        {
+            using (MySqlConnection sqlconn = GetSqlconnection())
+            {
+                MySqlCommand sqlcmd = new MySqlCommand(sql, sqlconn);
+                sqlcmd.CommandType = CommandType.Text;
+                if (sps != null)
+                {
+                    sqlcmd.Parameters.AddRange(sps);
+                }
+                sqlconn.Open();
+                return sqlcmd.ExecuteNonQuery();
+            }
+        }
+
+        //读取器
+        public static MySqlDataReader MyReader(string sql,MySqlParameter[] sps)
+        {
+            MySqlConnection sqlconn = GetSqlconnection();
+
+            MySqlCommand sqlcmd = new MySqlCommand(sql, sqlconn);
+            sqlcmd.CommandType = CommandType.Text;
+            if (sps != null)
+            {
+                sqlcmd.Parameters.AddRange(sps);
+            }
+            sqlconn.Open();
+            return sqlcmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+        }
+
+        //适配器
+        public static DataTable MyAdapter(string sql, MySqlParameter[] sps)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection sqlconn = GetSqlconnection())
+            {
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                adapter.SelectCommand.CommandType = CommandType.Text;
+                if (sps != null)
+                {
+                    adapter.Fill(dt);
+                }
+                return dt;
+            }
+        }
+
+        //返回单个值
+        public static object MyScalar(string sql, MySqlParameter[] sps)
+        {
+            using (MySqlConnection sqlconn = GetSqlconnection())
+            {
+                MySqlCommand sqlcmd = new MySqlCommand(sql, sqlconn);
+                sqlcmd.CommandType = CommandType.Text;
+                if (sps != null)
+                {
+                    sqlcmd.Parameters.AddRange(sps);
+                }
+                sqlconn.Open();
+                return sqlcmd.ExecuteScalar();
+            }
+        }

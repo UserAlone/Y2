@@ -1,0 +1,19 @@
+<Resource 
+name="jdbc/title"
+auth="Container" 
+driverClassName="com.mysql.jdbc.Driver" 
+url="jdbc:mysql://localhost:3306/bdqn2"
+username="root"
+password="123"
+maxActive="500" 
+maxIdle="30" 
+maxWait="10000"   
+type="javax.sql.DataSource" />
+
+
+2、在项目的web.xml中配置DataSource
+<resource-ref>
+    <res-ref-name> jdbc/news </res-ref-name>
+    <res-type> javax.sql.DataSource </res-type>
+    <res-auth> Container </res-auth>
+</resource-ref>

@@ -18,5 +18,8 @@ namespace Model
         public string user_name { get; set; }
         public string user_true_name { get; set; }
         public string user_password { get; set; }
+        public Nullable<int> rid { get; set; }
+    
+        public  Role Role { get; set; }
     }
 }

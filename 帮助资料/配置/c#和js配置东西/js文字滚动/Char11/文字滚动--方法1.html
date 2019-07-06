@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文字滚动2</title>
+    <style type="text/css">
+        body, ul, li, a, p, div {
+            padding: 0px;
+            margin: 0px;
+            font-size: 14px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        #demo {
+            overflow: hidden; /*溢出的部分不显示*/
+            width: 290px;
+            height: 1036px; /*一定要确切，避免demo1与demo2之间的距离过大*/
+            padding: 5px;
+            margin: 50px auto;
+        }
+
+        #express{
+            border:1px solid blue;
+            height: 500px;
+            width: 400px;
+
+        }
+        #express li {
+            list-style: none;
+            font-size: 14px;
+            height: 25px;
+            margin: 0px 5px;
+            line-height: 180%; /*行与行之间的距离*/
+            letter-spacing: 2px; /*字与字之间的距离*/
+            border-bottom: 1px dashed #ccc;
+            cursor: pointer;
+        }
+    </style>
+    <script src="js/jquery-1.8.0.min.js"></script>
+
+
+</head>
+<body>
+<div id="demo">
+    <div id="demo1">
+        <ul id="express">
+            <li><a href="#"> ・2010考研英语大纲到货75折.</a></li>
+            <li style="color:red">・权威定本四大名著（人民文...</li>
+            <li>・口述历史权威唐德刚先生国...</li>
+            <li>・袁伟民与体坛风云：实话实...</li>
+            <li>・我们台湾这些年：轰动两岸...</li>
+            <li>・畅销教辅推荐：精品套书50...</li>
+            <li>・2010版法律硕士联考大纲75...</li>
+            <li>・计算机新书畅销书75折抢购</li>
+            <li>・2009年孩子最喜欢的书&gt;&gt;</li>
+            <li>・弗洛伊德作品精选集59折</li>
+            <li>・2010考研英语大纲到货75折...</li>
+            <li>・权威定本四大名著（人民文...</li>
+            <li>・口述历史权威唐德刚先生国...</li>
+            <li>・袁伟民与体坛风云：实话实...</li>
+            <li>・我们台湾这些年：轰动两岸...</li>
+            <li>・畅销教辅推荐：精品套书50...</li>
+            <li>・2010版法律硕士联考大纲75...</li>
+            <li>・计算机新书畅销书75折抢购</li>
+            <li>・2009年孩子最喜欢的书&gt;&gt;</li>
+            <li>・弗洛伊德作品精选集59折</li>
+            <li>・2010考研英语大纲到货75折...</li>
+            <li>・权威定本四大名著（人民文...</li>
+            <li>・口述历史权威唐德刚先生国...</li>
+            <li>・袁伟民与体坛风云：实话实...</li>
+            <li>・我们台湾这些年：轰动两岸...</li>
+            <li>・畅销教辅推荐：精品套书50...</li>
+            <li>・2010版法律硕士联考大纲75...</li>
+            <li>・计算机新书畅销书75折抢购</li>
+            <li>・2009年孩子最喜欢的书&gt;&gt;</li>
+            <li>・弗洛伊德作品精选集59折</li>
+            <li>・2010考研英语大纲到货75折...</li>
+            <li>・权威定本四大名著（人民文...</li>
+            <li>・口述历史权威唐德刚先生国...</li>
+            <li>・袁伟民与体坛风云：实话实...</li>
+            <li>・我们台湾这些年：轰动两岸...</li>
+            <li>・畅销教辅推荐：精品套书50...</li>
+            <li>・2010版法律硕士联考大纲75...</li>
+            <li>・计算机新书畅销书75折抢购</li>
+            <li>・2009年孩子最喜欢的书&gt;&gt;</li>
+            <li>・弗洛伊德作品精选集59折</li>
+        </ul>
+    </div>
+    <div id="demo2"></div>
+</div>
+<script type="text/javascript">
+
+    $(function () {
+        function  moveDom() {
+            var marginTop=0;//自减量
+            var stop=false;//默认开始动画
+            var interval=setInterval(function () {
+                if(stop){
+                    return;
+                }
+                //找到ul 第一个li
+                $("#express").children("li").first().animate({"margin-top":marginTop--},0,function () {
+                   var $first=$(this);//获取当前对象
+                   var falg=$first.is(":animated");//判断当前对象是否处于动画状态
+                    if(!falg){
+                        //判断自减量是否大于li本身的高度
+                        if(-marginTop>25){
+                            $first.css("margin-top",0).appendTo("#express");
+                            marginTop=0;
+                        }
+                    }
+                })
+
+            },50);
+
+            //鼠标悬浮停止动画
+            $("#express").hover(function () {
+                stop=true;
+
+            },function () {
+                stop=false;
+            })
+        }
+
+        //页面一加载就调用改函数
+        moveDom();
+    })
+
+
+</script>
+</body>
+</html>

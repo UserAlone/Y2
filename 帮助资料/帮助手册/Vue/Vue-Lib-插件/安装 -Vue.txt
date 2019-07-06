@@ -1,0 +1,14 @@
+
+npm install vue
+
+npm install vue-router
+
+#安装Vue-cli
+npm install -g @vue/cli
+#安装成功之后，可以执行vue list 命令查看： 
+
+npm i element-ui -S
+
+npm install vue-easytable --save-dev
+
+

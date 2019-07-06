@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+/*外部样式导入*/
+@import url("css/index.css");
+
+.title-cell-class-name-test1 {
+        background-color: #2db7f5;
+        color:#fff;
+    }
+    .title-cell-class-name-test2 {
+        background-color: #f60;
+        color:#fff;
+    }
+		</style>
+		
+<script src="js/jquery-1.12.4.js"></script>		
+<script src="js/vue.js"></script>
+<script src="js/vue-router.js" ></script>
+<script src="js/index.js"></script>
+
+	</head>
+<!--
+结合分页组件的table实例
+
+-->	
+	<body>
+		<div id="app">
+		<template>
+		  <div>
+		      <v-table
+		              is-vertical-resize
+		              :vertical-resize-offset='60'
+		              is-horizontal-resize
+		              style="width:100%"
+		              :multiple-sort="false"
+		              :min-height="350"
+		              even-bg-color="#f2f2f2"
+		              :title-rows="tableConfig.titleRows"
+		              :columns="tableConfig.columns"
+		              :table-data="tableConfig.tableData"
+		              row-hover-color="#eee"
+		              row-click-color="#edf7ff"
+		              @sort-change="sortChange"
+		              :paging-index="(pageIndex-1)*pageSize"
+		      ></v-table>
+		
+		       <div class="mt20 mb20 bold"></div>
+		            <v-pagination @page-change="pageChange" @page-size-change="pageSizeChange" :page-size-option="[10,20]" :total="25" :page-size="pageSize" :layout="['total', 'prev', 'pager', 'next', 'sizer', 'jumper']"></v-pagination>
+		       </div>
+		  </div>
+		</template>
+		</div>
+	</body>
+</html>
+<!--
+Pagination props
+
+参数	说明	类型	可选值	默认值
+layout	布局设置，可以根据自己的业务场景自行搭配	Array	—	['total', 'prev', 'pager', 'next', 'sizer', 'jumper']
+size	设置分页组件的尺寸大小	string	small/middle/large	middle
+total	总条数	number	—	—
+pageIndex	当前页码	number	—	1
+showPagingCount	显示分页按钮的个数	number	—	5
+pageSize	每页大小	number	—	10
+pageSizeOption	每页大小下拉配置	Array	—	[10, 20, 30]
+
+Pagination Event
+
+事件名称	说明	回调参数
+page-change	页码改变回调	pageIndex
+page-size-change	每页大小下拉框改变回调	newPageSize
+-->
+<script type="text/javascript">
+	
+	var dataArr = [
+                    {"name":"赵伟1","height":"180","gender":"man","address":"上海市黄浦区金陵东路569号17楼","hobby":"钢琴、书法、唱歌"},
+                    {"name":"李伟1","height":"180","gender":"man","address":"上海市奉贤区南桥镇立新路12号2楼","hobby":"钢琴、书法、唱歌"},
+                    {"name":"孙伟1","height":"180","gender":"man","address":"上海市崇明县城桥镇八一路739号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"周伟1","height":"180","gender":"man","address":"上海市青浦区青浦镇章浜路24号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"吴伟1","height":"180","gender":"man","address":"上海市松江区乐都西路867-871号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"赵伟2","height":"180","gender":"man","address":"上海市黄浦区金陵东路569号17楼","hobby":"钢琴、书法、唱歌"},
+                    {"name":"李伟2","height":"180","gender":"man","address":"上海市奉贤区南桥镇立新路12号2楼","hobby":"钢琴、书法、唱歌"},
+                    {"name":"孙伟2","height":"180","gender":"man","address":"上海市崇明县城桥镇八一路739号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"周伟2","height":"180","gender":"man","address":"上海市青浦区青浦镇章浜路24号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"吴伟2","height":"180","gender":"man","address":"上海市松江区乐都西路867-871号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"赵伟3","height":"180","gender":"man","address":"上海市黄浦区金陵东路569号17楼","hobby":"钢琴、书法、唱歌"},
+                    {"name":"李伟3","height":"180","gender":"man","address":"上海市奉贤区南桥镇立新路12号2楼","hobby":"钢琴、书法、唱歌"},
+                    {"name":"孙伟3","height":"180","gender":"man","address":"上海市崇明县城桥镇八一路739号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"周伟3","height":"180","gender":"man","address":"上海市青浦区青浦镇章浜路24号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"吴伟3","height":"180","gender":"man","address":"上海市松江区乐都西路867-871号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"赵伟4","height":"180","gender":"man","address":"上海市黄浦区金陵东路569号17楼","hobby":"钢琴、书法、唱歌"},
+                    {"name":"李伟4","height":"180","gender":"man","address":"上海市奉贤区南桥镇立新路12号2楼","hobby":"钢琴、书法、唱歌"},
+                    {"name":"孙伟4","height":"180","gender":"man","address":"上海市崇明县城桥镇八一路739号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"周伟4","height":"180","gender":"man","address":"上海市青浦区青浦镇章浜路24号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"吴伟4","height":"180","gender":"man","address":"上海市松江区乐都西路867-871号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"赵伟5","height":"180","gender":"man","address":"上海市黄浦区金陵东路569号17楼","hobby":"钢琴、书法、唱歌"},
+                    {"name":"李伟5","height":"180","gender":"man","address":"上海市奉贤区南桥镇立新路12号2楼","hobby":"钢琴、书法、唱歌"},
+                    {"name":"孙伟5","height":"180","gender":"man","address":"上海市崇明县城桥镇八一路739号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"周伟5","height":"180","gender":"man","address":"上海市青浦区青浦镇章浜路24号","hobby":"钢琴、书法、唱歌"},
+                    {"name":"吴伟5","height":"180","gender":"man","address":"上海市松江区乐都西路867-871号","hobby":"钢琴、书法、唱歌"}
+                 ] ;
+	
+	var Main ={
+        name: 'frozen-title-columns',
+           data(){
+            return {
+                pageIndex:1,
+                pageSize:10,
+                tableConfig: {
+                    multipleSort: false,
+                    tableData: [],
+                    columns: [
+                        {
+                            field: 'custome', width: 50, titleAlign: 'center', columnAlign: 'center',
+                            formatter: function (rowData, index,pagingIndex) {
+                                var currentIndex = index+pagingIndex;
+                                return currentIndex < 3 ? '<span style="color:red;font-weight: bold;">' + (currentIndex + 1) + '</span>' : currentIndex + 1
+                            }, isFrozen: true
+                        },
+                        {field: 'name', width: 100, columnAlign: 'center', isFrozen: true},
+                        {field: 'height', width: 100, columnAlign: 'center', isFrozen: true},
+                        {field: 'gender', width: 90, columnAlign: 'center', isFrozen: false,isResize:true},
+
+                        {field: 'address', width: 280, columnAlign: 'left',isResize:true},
+                        {field: 'hobby', width: 180, columnAlign: 'center',isResize:true}
+
+                    ],
+                    titleRows: [
+                                 [{fields: ['custome'], title: '排序', titleAlign: 'center', rowspan: 2},
+                                  {fields: ['name', 'height'], title: '基础信息', titleAlign: 'center', colspan: 2},
+                                  {fields: ['gender','address','hobby'], title: '用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;他&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;息', titleAlign: 'center', colspan: 3}],
+
+                                 [{fields: ['name'], title: '姓名', titleAlign: 'center'},
+                                  {fields: ['height'], title: '身高', titleAlign: 'center', orderBy: ''},
+                                  {fields: ['gender'], title: '性别', titleAlign: 'center'},
+                                  {fields: ['address'], title: '住址', titleAlign: 'center'},
+                                  {fields: ['hobby'], title: '爱好', titleAlign: 'center'}
+                                  ],
+
+                                 [{fields: ['custome','name','height'], title: '平均值', titleAlign: 'center', colspan: 3,titleCellClassName:'title-cell-class-name-test1'},
+                                   {fields: ['gender'], title: '111', titleAlign: 'center',titleCellClassName:'title-cell-class-name-test2'},
+                                   {fields: ['address'], title: '222', titleAlign: 'center',titleCellClassName:'title-cell-class-name-test2'},
+                                  {fields: ['hobby'], title: '333', titleAlign: 'center',titleCellClassName:'title-cell-class-name-test2'},
+                                 ]
+                               ],
+                }
+            }
+        },
+        methods:{
+            getTableData(){
+                //alert(0);
+                var arr = dataArr.slice((this.pageIndex-1)*this.pageSize,(this.pageIndex)*this.pageSize) ;
+                this.tableConfig.tableData = arr;
+            },
+            pageChange(pageIndex){
+
+                 this.pageIndex = pageIndex;
+                 this.getTableData();
+                 console.log(pageIndex)
+            },
+            pageSizeChange(pageSize){
+                
+                this.pageIndex = 1;
+                this.pageSize = pageSize;
+                this.getTableData();
+           },
+            sortChange(params){
+
+                if (params.height.length > 0){
+
+                    this.tableConfig.tableData.sort(function (a, b) {
+
+                        if (params.height === 'asc'){
+
+                           return a.height - b.height;
+                        }else if(params.height === 'desc'){
+
+                                return b.height - a.height;
+                        }else{
+
+                            return 0;
+                        }
+                    });
+                }
+            },
+        },
+        created(){
+            this.getTableData();
+        }
+    }
+	
+var Ctor = Vue.extend(Main)
+new Ctor().$mount('#app')
+	
+</script>
