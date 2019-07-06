@@ -1,0 +1,160 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>My JSP 'resume-list.jsp' starting page</title>
+    <link rel="stylesheet"
+          href="../../../css/table.css" type="text/css">
+    <link rel="stylesheet"
+          href="../../../css/cwcalendar.css" type="text/css">
+    <script type="text/javascript"
+            src="../../../javascript/jquery-1.7.2.js">
+    </script>
+    <script src="~/Scripts/vue.js"></script>
+    <script type="text/javascript">
+        var Currentpage = 1;
+        var pages = 1;
+        var vm;
+        $(function () {
+            fill();
+        })
+        function fill() {
+            vm = new Vue({
+                el: "#body",
+                data: {
+                    nums: null,
+                    rows: null,
+                    pages: null,
+                    current: null
+                },
+                methods: {
+                    load: function () {
+                        var t = this;
+                        $.ajax({
+                            type: "get",
+                            url: "/recruit/valid_list2",
+                            data: "Currentpage=" + Currentpage,
+                            success: function (mess) {
+                                var data = eval("(" + mess + ")");
+                                t.nums = data["dt"];
+                                t.rows = data["rows"];
+                                t.pages = data["pages"];
+                                t.current = Currentpage;
+                                for (var i = 0; i < t.nums.length; i++) {
+                                    if (t.nums[i]["interview_status"] == 0) {
+                                        t.nums[i]["interview_status"] = "待面试";
+                                    } else {
+                                        t.nums[i]["interview_status"] = "通过";
+                                    }
+                                }
+                            }
+                        })
+                    }
+                }
+            })
+            vm.load();
+        }
+        $(function () {
+            $("#first").click(function () {
+                Currentpage = 1;
+                vm.load();
+            })
+            $("#prev").click(function () {
+                if (Currentpage > 1) {
+                    Currentpage--;
+                }
+                vm.load();
+            })
+            $("#next").click(function () {
+                if (Currentpage < vm.pages) {
+                    Currentpage++;
+                }
+                vm.load();
+            })
+            $("#last").click(function () {
+                Currentpage = vm.pages;
+                vm.load();
+            })
+            $("#btn").click(function () {
+                Currentpage = $("#kuan").val();
+                vm.load();
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="body">
+        <form method="post" name="fm" action="javascript:void(0)">
+            <input type="hidden" name="utilBean.currPage" id="page" />
+            <table width="100%">
+                <tr>
+                    <td>
+                        <font color="black">
+                            您正在做的业务是：人力资源--招聘管理--简历管理--有效简历列表
+                        </font>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input type="button" value="返回" class="BUTTON_STYLE1" onclick=history.back();>
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" border="1" cellpadding=0 cellspacing=1
+                   bordercolorlight=#848284 bordercolordark=#eeeeee
+                   class="TABLE_STYLE1">
+                <tr>
+                    <td width="15%" class="TD_STYLE1">
+                        档案编号
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        姓名
+                    </td>
+                    <td width="10%" class="TD_STYLE1">
+                        性别
+                    </td>
+                    <td width="15%" class="TD_STYLE1">
+                        职位分类
+                    </td>
+                    <td width="5%" class="TD_STYLE1">
+                        职位名称
+                    </td>
+                    <td width="5%" class="TD_STYLE1">
+                        电话号码
+                    </td>
+                    <td width="5%" class="TD_STYLE1">
+                        复核状态
+                    </td>
+                    <td width="5%" class="TD_STYLE1">
+                        面试状态
+                    </td>
+                </tr>
+                <tr v-for="(item,i) in nums">
+                    <td><a :href="['/recruit/resume_select/'+item.res_id]">{{item.res_id}}</a></td>
+                    <td>{{item.human_name}}</td>
+                    <td>{{item.human_sex}}</td>
+                    <td>{{item.human_major_kind_name}}</td>
+                    <td>{{item.human_major_name}}</td>
+                    <td>{{item.human_telephone}}</td>
+                    <td v-if="item.check_status=='0'">待复核</td>
+                    <td v-if="item.check_status=='1'">通过</td>
+                    <td>{{item.interview_status}}</td>
+                </tr>
+            </table>
+            <p style="text-align: center;">
+                &nbsp;&nbsp;总数：{{rows}} 例 &nbsp;&nbsp;&nbsp;当前第{{current}}页 / 每页显示 1 条 &nbsp;&nbsp;&nbsp;共 {{pages}} 页 &nbsp;&nbsp;&nbsp;
+                <a href="javascript:void(0)" id="first">首页</a> &nbsp;&nbsp;&nbsp;
+                <a href="javascript:void(0)" id="prev">上一页</a> &nbsp;&nbsp;&nbsp;
+                <a href="javascript:void(0)" id="next">下一页</a> &nbsp;&nbsp;&nbsp;
+                <a href="javascript:void(0)" id="last">尾页</a> &nbsp;&nbsp;&nbsp;
+                跳到第 <input type=text class=input1 id="kuan" size=1> 页&nbsp;&nbsp;<input type="image" id="btn" src="../../../images/go.bmp" width=18 height=18 border=0>
+        </form>
+    </div>
+</body>
+</html>

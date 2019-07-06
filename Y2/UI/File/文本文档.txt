@@ -1,0 +1,67 @@
+回顾：
+1、值类型和引用类型内存存储上的区别：
+1）值类型直接存储在栈中，与堆无关
+2）引用类型将对象的地址存储在栈中，对象的实际数据存储在堆中
+
+2、常用值类型：
+	基本数据类型，枚举enum，结构struct
+
+3、常用引用类型：
+	string，object，类class，数组，接口
+
+4、装箱拆箱
+1）装箱：值类型-->引用类型
+2）拆箱：引用类型-->值类型
+
+5、传参方式
+1）值方式（默认）：传递变量在栈中的值
+2）引用方式（ref,out）：传递变量在栈中的地址
+
+表示1个学生的年龄
+int age=18;
+
+表示多个学生的年龄
+int[] ages=new int[10];
+ages[0]=18;
+
+表示1个学生（对象）
+Student stu=new Student();
+
+表示多个学生（对象数组）
+Student[] stus=new Student[10];
+stus[0]=new Student();
+
+知识点：
+一、数组：在内存中开辟一段连续的空间
+局限性：数组大小固
+1、增加元素时，必须重新定义数组
+2、移除元素时，将造成存储空间浪费
+
+注意：如果需要表示同类型的固定大小的多个数据，就可以使用数组
+
+二、集合：高级数组，动态维护
+1、数组列表 ArrayList
+1）传统集合，必须引入using System.Collections;
+
+2、泛型列表 List<T>
+1）泛型集合，必须引入using System.Collections.Generic;
+2）T表示类型占位符，可以使用任意类型替换
+3）常用操作
+List<T> list=new List<T>();
+a- 添加 list.Add(T item) 
+b- 判断是否包含 list.Contains(T item)
+c- 根据下标访问元素 list[int index]
+d- 移除所有元素 list.Clear()
+e- 移除指定元素 list.Remove(T item)
+f- 移除指定下标对应的元素 list.RemoveAt(int index)
+g- 使用for或foreach进行遍历
+h- 在指定位置插入元素 list.Insert(int index,T item)
+
+注意：集合都是引用类型，使用集合时必须new出来
+
+
+
+
+
+
+
