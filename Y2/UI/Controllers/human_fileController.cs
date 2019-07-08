@@ -1,5 +1,5 @@
 ﻿using BLL;
-using DAO;
+using BAL;
 using Model;
 using Newtonsoft.Json;
 using System;
@@ -8,12 +8,13 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IBLL;
 
 namespace UI.Controllers
 {
     public class human_fileController : Controller
     {
-        human_fileBLL hb = new human_fileBLL();
+        human_fileServices hb = new human_fileServices();
         HR_DBEntities hd = new HR_DBEntities();
         // GET: human_file
         public ActionResult Index()

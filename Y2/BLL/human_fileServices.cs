@@ -49,5 +49,14 @@ namespace BLL
         {
             return hfi.human_fileUpdate(t);
         }
+        public List<config_file_first_kind> SelectAll<config_file_first_kind>() where config_file_first_kind : class
+        {
+            return hfi.SelectAll<config_file_first_kind>();
+        }
+
+        public List<config_file_second_kind> SelectWhere(Expression<Func<config_file_second_kind, bool>> where)
+        {
+            return hfi.SelectWhere<config_file_second_kind>(where);
+        }
     }
 }

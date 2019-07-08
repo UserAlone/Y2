@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="human_fileBLL.cs" />
     <Compile Include="major_changeBLL.cs" />
     <Compile Include="RoleRigBLL.cs" />
     <Compile Include="RoleUsBLL.cs" />
@@ -79,7 +78,6 @@
       <Project>{3fd11e36-b0a7-4083-89e4-f70f3f725906}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <Compile Include="UserBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IBLL\IBLL.csproj">
@@ -107,4 +105,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
- </Project>
+</Project>

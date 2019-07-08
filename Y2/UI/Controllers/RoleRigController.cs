@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using System.Data;
-using DAO;
+using BAL;
 
 namespace UI.Controllers
 {

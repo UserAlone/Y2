@@ -20,6 +20,6 @@ namespace Model
         public string user_password { get; set; }
         public Nullable<int> rid { get; set; }
     
-        public  Role Role { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

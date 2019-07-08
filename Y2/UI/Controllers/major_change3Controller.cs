@@ -1,5 +1,5 @@
 ﻿using BLL;
-using DAO;
+using BAL;
 using Model;
 using Newtonsoft.Json;
 using System;
@@ -53,33 +53,38 @@ namespace UI.Controllers
         //查看
         public ActionResult Update(short id)
         {
-            var dt = mc.SelectWhere(e => e.mch_id == id);
-            major_change ma = new major_change()
-            {
-                human_id = dt[0].human_id,
-                human_name = dt[0].human_name,
-                first_kind_name = dt[0].first_kind_name,
-                second_kind_name = dt[0].second_kind_name,
-                third_kind_name = dt[0].third_kind_name,
-                major_kind_name = dt[0].major_kind_name,
-                major_name = dt[0].major_name,
-                salary_standard_name = dt[0].salary_standard_name,
-                salary_sum = dt[0].salary_sum,
-                register = dt[0].register,
-                regist_time = dt[0].regist_time,
-                checker = dt[0].checker,
-                check_time = dt[0].check_time,
-                change_reason = dt[0].change_reason,
-                check_reason = dt[0].check_reason,
-                new_salary_sum = dt[0].new_salary_sum,
-            };
-            GetList();
-            GetList1();
-            GetList2();
-            GetList3();
-            GetList4();
-            GetList5();
-            return View(ma);
+            //HR_DBEntities hde =new HR_DBEntities();
+            //var dt= hde.major_change.Select(e => e.mch_id==id).ToList();
+
+            //string sql = string.Format("select * from human_file='{0}'",id);
+
+            //major_change ma = new major_change()
+            //{
+            //    human_id = dt[0].human_id,
+            //    human_name = dt[0].human_name,
+            //    first_kind_name = dt[0].first_kind_name,
+            //    second_kind_name = dt[0].second_kind_name,
+            //    third_kind_name = dt[0].third_kind_name,
+            //    major_kind_name = dt[0].major_kind_name,
+            //    major_name = dt[0].major_name,
+            //    salary_standard_name = dt[0].salary_standard_name,
+            //    salary_sum = dt[0].salary_sum,
+            //    register = dt[0].register,
+            //    regist_time = dt[0].regist_time,
+            //    checker = dt[0].checker,
+            //    check_time = dt[0].check_time,
+            //    change_reason = dt[0].change_reason,
+            //    check_reason = dt[0].check_reason,
+            //    new_salary_sum = dt[0].new_salary_sum,
+            //};
+            //GetList();
+            //GetList1();
+            //GetList2();
+            //GetList3();
+            //GetList4();
+            //GetList5();
+            //return View(ma);
+            return View();
         }
 
      

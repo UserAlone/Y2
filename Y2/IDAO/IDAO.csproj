@@ -50,7 +50,6 @@
     <Compile Include="engage_major_releaseIDAO.cs" />
     <Compile Include="engage_resumeIDAO.cs" />
     <Compile Include="human_fileIDAO.cs" />
-    <Compile Include="human_fileIDAO.cs" />
     <Compile Include="major_changeIDAO.cs" />
     <Compile Include="RoleRigIDAO.cs" />
     <Compile Include="RoleUsIDAO.cs" />
@@ -63,7 +62,6 @@
       <Project>{3fd11e36-b0a7-4083-89e4-f70f3f725906}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <Compile Include="UserIDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
@@ -79,4 +77,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
- </Project>
+</Project>

@@ -17,20 +17,6 @@ namespace IBLL
         List<human_file> human_fileFY<K>(Expression<Func<human_file, K>> order, Expression<Func<human_file, bool>> where, out int rows, out int pages, int currentPage, int pageSize);
         int human_fileDel(engage_resume t);
         int human_fileDel2(string sql);
-    }
-}
-using Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IBLL
-{
-   public interface human_fileIBLL
-    {
         //查询全部
         List<config_file_first_kind> SelectAll<config_file_first_kind>() where config_file_first_kind : class;
 

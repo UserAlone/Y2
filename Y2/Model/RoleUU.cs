@@ -12,13 +12,12 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class RoleUs
+    public partial class RoleUU
     {
         public string rname { get; set; }
         public int user_id { get; set; }
         public string user_name { get; set; }
         public string user_true_name { get; set; }
         public string user_password { get; set; }
-        public int rid { get; set; }
     }
 }

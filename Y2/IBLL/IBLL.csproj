@@ -50,7 +50,6 @@
     <Compile Include="engage_major_releaseIBLL.cs" />
     <Compile Include="engage_resumeIBLL.cs" />
     <Compile Include="human_fileIBLL.cs" />
-    <Compile Include="human_fileIBLL.cs" />
     <Compile Include="major_changeIBLL.cs" />
     <Compile Include="RoleRigIBLL.cs" />
     <Compile Include="RoleUsIBLL.cs" />
@@ -63,7 +62,6 @@
       <Project>{3fd11e36-b0a7-4083-89e4-f70f3f725906}</Project>
       <Name>Model</Name>
     </ProjectReference>
-    <Compile Include="UserIBLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
@@ -79,4 +77,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
- </Project>
+</Project>

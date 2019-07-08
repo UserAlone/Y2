@@ -1,4 +1,4 @@
-﻿using DAO;
+﻿using BAL;
 using IDAO;
 using System;
 using System.Collections.Generic;
@@ -16,8 +16,8 @@ namespace BAL
         {
             SqlParameter[] sp ={
                             new SqlParameter(){ParameterName="@pageSize",Value=2},
-                            new SqlParameter(){ParameterName="@KeyName",Value="mch_id"},
-                            new SqlParameter(){ParameterName="@TableName",Value="dbo.major_change"},
+                            new SqlParameter(){ParameterName="@KeyName",Value="huf_id"},
+                            new SqlParameter(){ParameterName="@TableName",Value="dbo.human_file"},
                             new SqlParameter(){ParameterName="@CurrentPage",Value=currentPage},
                             new SqlParameter(){ParameterName="@where",Value=where},
                             new SqlParameter(){ParameterName="@TotalPage",SqlDbType= SqlDbType.Int, Direction= ParameterDirection.Output},
@@ -34,8 +34,8 @@ namespace BAL
             SqlParameter[] sp =
             {
                             new SqlParameter(){ParameterName="@pageSize",Value=2},
-                            new SqlParameter(){ParameterName="@KeyName",Value="mch_id"},
-                            new SqlParameter(){ParameterName="@TableName",Value="dbo.major_change"},
+                            new SqlParameter(){ParameterName="@KeyName",Value="huf_id"},
+                            new SqlParameter(){ParameterName="@TableName",Value="dbo.human_file"},
                             new SqlParameter(){ParameterName="@CurrentPage",Value=currentPage},
                             new SqlParameter(){ParameterName="@where",Value=where},
                             new SqlParameter(){ParameterName="@TotalPage",SqlDbType= SqlDbType.Int, Direction= ParameterDirection.Output},

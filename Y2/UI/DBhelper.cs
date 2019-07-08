@@ -6,16 +6,16 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Configuration;
-namespace BAL
+namespace UI
 {
-   public class DBhelper
+    public class DBhelper
     {
-        public static DataTable Select(string sql,string fileName, params SqlParameter[] ps)
+        public static DataTable Select(string sql, string fileName, params SqlParameter[] ps)
         {
             SqlConnection cn = GetConnection();
 
             SqlDataAdapter ad = new SqlDataAdapter(sql, cn);
-            if (ps!=null)
+            if (ps != null)
             {
                 ad.SelectCommand.Parameters.AddRange(ps);
             }
@@ -38,84 +38,85 @@ namespace BAL
             return cn;
         }
 
-        public   static int InsertUpdateDelte(string sql,string fileName,params SqlParameter[] ps)
+        public static int InsertUpdateDelte(string sql, string fileName, params SqlParameter[] ps)
         {
             SqlConnection cn = GetConnection();
-           
-            SqlCommand cmd = new SqlCommand(sql, cn);
-            if (ps != null)
-            {
-               cmd.Parameters.AddRange(ps);
-            }
-             int result=0;
-             try
-             {
-                 cn.Open();
-                 result = cmd.ExecuteNonQuery();
-             }
-             catch (Exception ex)
-             {
 
-                throw;
-            }
-             finally
-             {
-                 cn.Close();
-             }
-            return result;
-        }
-
-        public static object SelectSinger(string sql,string fileName,params SqlParameter[] ps)
-        {
-           SqlConnection cn = GetConnection();
             SqlCommand cmd = new SqlCommand(sql, cn);
             if (ps != null)
             {
                 cmd.Parameters.AddRange(ps);
             }
-            object obj=null;
+            int result = 0;
             try
             {
                 cn.Open();
-                 obj= cmd.ExecuteScalar();
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                cn.Close();
+            }
+            return result;
+        }
+
+        public static object SelectSinger(string sql, string fileName, params SqlParameter[] ps)
+        {
+            SqlConnection cn = GetConnection();
+            SqlCommand cmd = new SqlCommand(sql, cn);
+            if (ps != null)
+            {
+                cmd.Parameters.AddRange(ps);
+            }
+            object obj = null;
+            try
+            {
+                cn.Open();
+                obj = cmd.ExecuteScalar();
             }
             catch (Exception ex)
             {
                 throw;
 
             }
-            finally {
+            finally
+            {
                 cn.Close();
             }
-           
+
             return obj;
         }
 
-        public static SqlDataReader SelectReader(string sql,string fileName,params SqlParameter[] ps)
+        public static SqlDataReader SelectReader(string sql, string fileName, params SqlParameter[] ps)
         {
             SqlConnection cn = GetConnection();
 
             SqlCommand cmd = new SqlCommand(sql, cn);
             if (ps != null)
             {
-               cmd.Parameters.AddRange(ps);
+                cmd.Parameters.AddRange(ps);
             }
-             SqlDataReader reader=null;
+            SqlDataReader reader = null;
             try
             {
                 cn.Open();
-               reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
             }
             catch (Exception ex)
             {
                 throw;
-               
+
             }
             return reader;
         }
 
 
-        public static DataTable SelectProc(SqlParameter[] ps,string fileName)
+        public static DataTable SelectProc(SqlParameter[] ps, string fileName)
         {
             SqlConnection cn = GetConnection();
             string sql = "FenYe";

@@ -203,20 +203,18 @@
     <Compile Include="Controllers\salaryCriterionController.cs" />
     <Compile Include="Controllers\salaryGrantController.cs" />
     <Compile Include="Controllers\transferController.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\config_public_char2Controller.cs" />
     <Compile Include="Controllers\salary_standard_detailsController.cs" />
     <Compile Include="Controllers\DataTable.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\human_fileController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\major_change2Controller.cs" />
     <Compile Include="Controllers\major_change3Controller.cs" />
     <Compile Include="Controllers\major_changeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MianController.cs" />
     <Compile Include="Controllers\RoleRigController.cs" />
     <Compile Include="Controllers\RoleUsController.cs" />
+    <Compile Include="DBhelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1025,31 +1023,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Unity.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1101,7 +1074,6 @@
     <Content Include="Views\client\config_major_kindInsert.cshtml" />
     <Content Include="Views\client\config_major.cshtml" />
     <Content Include="Views\client\config_majorInsert.cshtml" />
-    <Content Include="Unity.config" />
     <Content Include="Views\RoleUs\Index.cshtml" />
     <Content Include="Views\RoleRig\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
@@ -1125,13 +1097,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="css\" />
     <Folder Include="File\" />
-    <Folder Include="Views\criterionData\" />
-    <Folder Include="Views\power\" />
-    <Folder Include="Views\salaryCriterion\" />
-    <Folder Include="Views\salaryGrant\" />
-    <Folder Include="Views\transfer\" />
     <Folder Include="jquery-easyui-1.3.5\themes\black\" />
     <Folder Include="jquery-easyui-1.3.5\themes\bootstrap\images\" />
     <Folder Include="jquery-easyui-1.3.5\themes\default\" />
@@ -1139,6 +1105,11 @@
     <Folder Include="jquery-easyui-1.3.5\themes\icons\" />
     <Folder Include="jquery-easyui-1.3.5\themes\metro\" />
     <Folder Include="Views\config_public_char\" />
+    <Folder Include="Views\criterionData\" />
+    <Folder Include="Views\power\" />
+    <Folder Include="Views\salaryCriterion\" />
+    <Folder Include="Views\salaryGrant\" />
+    <Folder Include="Views\transfer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

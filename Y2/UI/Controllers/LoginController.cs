@@ -5,15 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using Model;
 using BLL;
-using DAO;
+using BAL;
 using System.Data;
 using Newtonsoft.Json;
+using IBLL;
 
 namespace UI.Controllers
 {
     public class LoginController : Controller
     {
-        UserBLL ub = new UserBLL();
+        userServices ub = new userServices();
         // GET: Login
         public ActionResult Index(Users us)
         {

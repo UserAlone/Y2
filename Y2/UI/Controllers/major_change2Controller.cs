@@ -1,5 +1,5 @@
 ﻿using BLL;
-using DAO;
+using BAL;
 using Model;
 using Newtonsoft.Json;
 using System;
@@ -37,24 +37,24 @@ namespace UI.Controllers
         public ActionResult Update(short id)
         {
             Session["ids"] = id;
-            var dt = mc.SelectWhere(e => e.mch_id == id);
-            major_change ma = new major_change()
+            var dt = mc.SelectWhere(e => e.huf_id == id);
+            human_file ma = new human_file()
             {
                 human_id = dt[0].human_id,
                 human_name = dt[0].human_name,
                 first_kind_name = dt[0].first_kind_name,
                 second_kind_name = dt[0].second_kind_name,
                 third_kind_name = dt[0].third_kind_name,
-                major_kind_name = dt[0].major_kind_name,
-                major_name = dt[0].major_name,
+                human_major_kind_name = dt[0].human_major_kind_name,
+                hunma_major_name = dt[0].hunma_major_name,
                 salary_standard_name = dt[0].salary_standard_name,
                 salary_sum = dt[0].salary_sum,
                 register = dt[0].register,
                 regist_time = dt[0].regist_time,
                 checker=dt[0].checker,
                 check_time=dt[0].check_time,
-                change_reason=dt[0].change_reason,
-                check_reason=dt[0].check_reason
+                //change_reason=dt[0].change_reason,
+                //check_reason=dt[0].check_reason
             };
             GetList();
             GetList1();

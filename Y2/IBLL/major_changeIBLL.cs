@@ -16,6 +16,6 @@ namespace IBLL
         //分页查询调动审核
         DataTable FenYe2(int currentPage,ref int page,ref int rows,string where);
         //查询单行
-        List<major_change> SelectWhere(Expression<Func<major_change, bool>> where);
+        List<human_file> SelectWhere(Expression<Func<human_file, bool>> where);
     }
 }

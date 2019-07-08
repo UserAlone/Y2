@@ -110,11 +110,11 @@ namespace UI.Controllers
             ChaID(emr);
             if (emri.engage_major_releaseXiu(emr) > 0)
             {
-                return Content("<script>alert('操作成功！');location.href='/recruit/position_change_update';</script>");
+                return Content("<script>alert('修改成功！');location.href='/recruit/position_change_update';</script>");
             }
             else
             {
-                return Content("<script>alert('操作失败！');location.href='/recruit/position_change_update';</script>");
+                return Content("<script>alert('修改失败！');location.href='/recruit/position_change_update';</script>");
             }
         }
         //根据职位发布变更id查询简历信息
@@ -137,11 +137,11 @@ namespace UI.Controllers
         {
             if (emri.engage_major_releaseDel(new engage_major_release() { mre_id = (short)id }) > 0)
             {
-                return Content("操作成功！");
+                return Content("<script>alert('删除成功！');location.href='/recruit/position_change_update';</script>");
             }
             else
             {
-                return Content("操作失败！");
+                return Content("<script>alert('删除失败！');location.href='/recruit/position_change_update';</script>");
             }
         }
         //职位发布查询
@@ -182,7 +182,7 @@ namespace UI.Controllers
             er.check_status = 0;
             er.check_status_sx = 0;
             er.human_major_kind_name = cmk.config_major_kindChaID(c => c.major_kind_id.Equals(er.human_major_kind_id)).FirstOrDefault().major_kind_name;//根据职位分类id查询name
-            er.human_major_name = cmi.config_majorChaID(d => d.major_kind_id.Equals(er.human_major_id)).FirstOrDefault().major_name;//根据职位名称id查询name
+            er.human_major_name = cmi.config_majorChaID(d => d.major_id.Equals(er.human_major_id)).FirstOrDefault().major_name;//根据职位名称id查询name
             if (eri.engage_resumeAdd(er) > 0)
             {
                 return Content("<script>alert('操作成功!');location.href='/recruit/position_release_search';</script>");
@@ -263,7 +263,7 @@ namespace UI.Controllers
             er.check_status = 1;
             er.check_status_sx = 0;
             er.human_major_kind_name = cmk.config_major_kindChaID(c => c.major_kind_id.Equals(er.human_major_kind_id)).FirstOrDefault().major_kind_name;//根据职位分类id查询name
-            er.human_major_name = cmi.config_majorChaID(d => d.major_kind_id.Equals(er.human_major_id)).FirstOrDefault().major_name;//根据职位名称id查询name
+            er.human_major_name = cmi.config_majorChaID(d => d.major_id.Equals(er.human_major_id)).FirstOrDefault().major_name;//根据职位名称id查询name
             if (eri.engage_resumeXiu(er) > 0)
             {
                 return Content("<script>alert('推荐成功！');location.href='/recruit/resume_list';</script>");

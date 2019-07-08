@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Index";
 }
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -26,7 +27,7 @@
                         } else {
                             $('#tabs').tabs('add', {
                                 title: text,
-                                content: '<iframe src=' + url + ' width="1320px" height="460px" />',
+                                content: '<iframe src=' + url + ' width="1320px" height="629px" />',
                                 closable: true,
                                 tools: [{
                                     iconCls: 'icon-mini-refresh',
@@ -44,16 +45,16 @@
     </script>
 </head>
 <body class="easyui-layout">
-    <div data-options="region:'north',title:'',split:true" style="height:200px;">
-        <iframe src="~/Hr/top.html" width="99%" height="190"></iframe>
+    <div data-options="region:'north',title:'',split:true" style="height:81px;">
+        <iframe src="~/Hr/top.html" width="1530" height="70"></iframe>
     </div>
 
 
     <div data-options="region:'west',title:'',split:true" style="width:200px;">
         <ul id="tt"></ul>
     </div>
-    <div data-options="region:'center',title:''" style="padding:5px;background:#eee;">
-        <div id="tabs" class="easyui-tabs" style="width:1360px;height:500px;">
+    <div data-options="region:'center',title:''" style="padding:5px;background:#eee;height:1000px;">
+        <div id="tabs" class="easyui-tabs" style="width:1329px;height:665px;">
         </div>
     </div>
 </body>

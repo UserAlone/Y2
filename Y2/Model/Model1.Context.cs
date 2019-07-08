@@ -18,7 +18,6 @@ namespace Model
         public HR_DBEntities()
             : base("name=HR_DBEntities")
         {
-            Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -35,27 +34,28 @@ namespace Model
         public virtual DbSet<config_public_char> config_public_char { get; set; }
         public virtual DbSet<config_question_first_kind> config_question_first_kind { get; set; }
         public virtual DbSet<config_question_second_kind> config_question_second_kind { get; set; }
+        public virtual DbSet<engage_interview> engage_interview { get; set; }
+        public virtual DbSet<engage_major_release> engage_major_release { get; set; }
+        public virtual DbSet<engage_resume> engage_resume { get; set; }
         public virtual DbSet<human_file> human_file { get; set; }
-        public virtual DbSet<Quan> Quan { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<RoleQuan> RoleQuan { get; set; }
+        public virtual DbSet<salary_standard_details> salary_standard_details { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<bonus> bonus { get; set; }
         public virtual DbSet<engage_answer> engage_answer { get; set; }
         public virtual DbSet<engage_answer_details> engage_answer_details { get; set; }
         public virtual DbSet<engage_exam> engage_exam { get; set; }
         public virtual DbSet<engage_exam_details> engage_exam_details { get; set; }
-        public virtual DbSet<engage_interview> engage_interview { get; set; }
-        public virtual DbSet<engage_major_release> engage_major_release { get; set; }
-        public virtual DbSet<engage_resume> engage_resume { get; set; }
         public virtual DbSet<engage_subjects> engage_subjects { get; set; }
         public virtual DbSet<human_file_dig> human_file_dig { get; set; }
         public virtual DbSet<major_change> major_change { get; set; }
         public virtual DbSet<salary_grant> salary_grant { get; set; }
         public virtual DbSet<salary_grant_details> salary_grant_details { get; set; }
         public virtual DbSet<salary_standard> salary_standard { get; set; }
-        public virtual DbSet<salary_standard_details> salary_standard_details { get; set; }
         public virtual DbSet<training> training { get; set; }
+        public virtual DbSet<Quan> Quan { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<RoleQuan> RoleQuan { get; set; }
         public virtual DbSet<RoleUs> RoleUs { get; set; }
+        public virtual DbSet<RoleUU> RoleUU { get; set; }
     }
 }
