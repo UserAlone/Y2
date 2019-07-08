@@ -1,0 +1,255 @@
+﻿
+@{
+    Layout = null;
+}
+@using Model;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>check</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.12.4.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+</head>
+<body>
+    @{salary_grant sg = (salary_grant)ViewData["sg"];}
+    @{List<salary_grant_details> list = (List<salary_grant_details>)ViewData["list"];}
+    @{List<object> list2 = (List<object>)ViewData["salary_grant_ids"]; }
+    <form method="post" action="/salaryGrant/FuHe">
+        <table width="100%">
+            <tr>
+                <td style="text-align:left;">
+                    <font color="black">您正在做的业务是:人力资源管理--薪酬发放管理--薪酬发放复核</font>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: right">
+                    <input type="submit" value="复核通过" class="BUTTON_STYLE1">
+                    <input type="button" value="返 回" onclick="location.href='check_list.html'" class="BUTTON_STYLE1">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    薪酬单编号：@sg.salary_grant_id
+                    <input type="hidden" name="salary_grant_id" value="@sg.salary_grant_id">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    机构：
+                    @sg.first_kind_name@sg.third_kind_name@sg.second_kind_name
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    本机构总人数:@sg.human_amount
+                    <input type="hidden" name="human_amount" value="@sg.human_amount" id="humanAmount">
+                    ，基本薪酬总数:@sg.salary_standard_sum<input type="hidden" name="salaryGrant.salaryStandardSum" value="@sg.salary_standard_sum" />
+                    ，实发总额:<span id="salarySum_sum">@sg.salary_paid_sum</span>
+                    <input type="hidden" id="salaryPaidSum" name="salary_paid_sum" value="@sg.salary_paid_sum" />
+                    <input type="hidden" name="salaryGrant.register" value="@sg.register" />
+                    <input type="hidden" name="salaryGrant.registTime" value="@sg.regist_time" />
+                </td>
+                <td style="text-align: right">
+                    复核人:<input type="text" name="checker" value="better_admin" size="8" readonly="readonly">
+                    复核时间：<span id="Tdate"></span>
+                    <input type="hidden" name="check_time" id="Tdate2">
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1">
+                    <span>序号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>档案编号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>姓名</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>薪酬发放补贴详情</span>
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    奖励金额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    销售绩效总额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    应扣金额
+                </td>
+                <td class="TD_STYLE1" width="7%">
+                    实发金额
+                </td>
+
+            </tr>
+            @for (int i = 0; i < list.Count; i++)
+            {
+                //var details = (List<salary_standard_details>)dics[i]["薪酬标准单详细信息"];
+                string salaryStandardSum = "salaryStandardSum" + (i + 1);
+                string bounsSum = "bounsSum" + (i + 1);
+                string saleSum = "saleSum" + (i + 1);
+                string deductSum = "deductSum" + (i + 1);
+                string salaryPaidSum = "salaryPaidSum" + (i + 1);
+                <input type="hidden" name="grantDetails[@i].salaryGrantId" value="@list[i].salary_grant_id">
+                <input type="hidden" id="@salaryStandardSum" name="grantDetails[@i].salaryStandardSum" value="@list[i].salary_standard_sum" />
+                <tr class="TD_STYLE2">
+                    <td>
+                        @(i + 1)
+                    </td>
+                    <td>
+                        @list[i].human_id
+                        <input type="hidden" name="grantDetails[@i].humanId" value="@list[i].human_id" />
+                    </td>
+                    <td>
+                        @list[i].human_name
+                        <input type="hidden" name="grantDetails[@i].humanName" value="@list[i].human_name" />
+                    </td>
+                    <td>
+                       <a href="#" id="showsalary_standard_details" standard_id="@list2[i]" data-toggle="modal" data-target="#myModal">查看薪酬发放详情</a>
+                    </td>
+                    <td>
+                        <input type="text" name="grantDetails[@i].bounsSum" id="@bounsSum" value="@list[i].bouns_sum" onchange="onKeyPress(@(i+1),@list[i].salary_paid_sum)" class="INPUT_STYLE2" readonly="readonly" />
+                    </td>
+                    <td>
+                        <input type="text" name="grantDetails[@i].saleSum" id="@saleSum" value="@list[i].sale_sum" onchange="onKeyPress(@(i+1),@list[i].salary_paid_sum)" class="INPUT_STYLE2" readonly="readonly" />
+                    </td>
+                    <td>
+                        <input type="text" name="grantDetails[@i].deductSum" id="@deductSum" value="@list[i].deduct_sum" onchange="onKeyPress(@(i+1),@list[i].salary_paid_sum)" class="INPUT_STYLE2" readonly="readonly" />
+                    </td>
+                    <td>
+                        <input type="text" name="grantDetails[@i].salaryPaidSum" readonly="readonly" value="@list[i].salary_paid_sum" id="@salaryPaidSum" class="INPUT_STYLE2" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </form>
+    <div class="modal" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        登记发放详细信息
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table border="1" id="table2" class="table table-hover">
+                        <tr>
+                            <th>item_id</th>
+                            <th>item_name</th>
+                            <th>item_salary</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        关闭
+                    </button>                 
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $(document).on("click", "#showsalary_standard_details", function () {
+                $.ajax({
+                    url: "/salaryGrant/Getsalary_grant_details?id=" + $(this).attr("standard_id"),
+                    type: "get",
+                    datatype: "json",
+                    success: function (list) {
+                        $("#table2 tr:gt(0)").remove();
+                        for (var i = 0; i < list.length; i++) {
+                            var $tr = $("<tr><td>" + list[i].item_id + "</td><td>" + list[i].item_name + "</td><td>" + list[i].salary + "</td></tr>");
+                            $("#table2").append($tr);
+                        }
+                    }
+                });
+            });
+        });
+        function onKeyPress(i,benjin) {
+            var size = $("#humanAmount").val();
+            var bounsSum = document.getElementById("bounsSum" + i);
+            var saleSum = document.getElementById("saleSum" + i);
+            var deductSum = document.getElementById("deductSum" + i);
+            var salaryPaidSum = document.getElementById("salaryPaidSum" + i);
+            if (isNaN(bounsSum.value) || bounsSum.value < 0) {
+                alert("金额填写错误!");
+                bounsSum.value = "0.00";
+                return;
+            }
+            if (isNaN(saleSum.value) || saleSum.value < 0) {
+                alert("金额填写错误!");
+                saleSum.value = "0.00";
+                return;
+            }
+            if (isNaN(deductSum.value) || deductSum.value < 0) {
+                alert("金额填写错误!");
+                deductSum.value = "0.00";
+                return;
+            }
+            salaryPaidSum.value = Number(bounsSum.value) + Number(saleSum.value) - Number(deductSum.value) + Number(benjin);
+            var sum = 0;
+            for (var j = 1; j <= size; j++) {
+                sum = Number(sum) + Number(document.getElementById("salaryPaidSum" + j).value);
+            }
+            document.getElementById("salarySum_sum").innerHTML = sum;
+            document.getElementById("salaryPaidSum").value = sum;
+        }
+        function time() {
+            var tdate = document.getElementById("Tdate");
+            var d = new Date();
+            var y = d.getFullYear();
+            var moth = d.getMonth() + 1;
+            var date = d.getDate();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            var hh = 20 - 1 - h;
+            var mm = 60 - 1 - m;
+            var ss = 60 - s;
+            if (hh > 0) {
+                mm = mm + 60 * hh;
+            }
+            if (moth < 10) {
+                moth = "0" + moth;
+            }
+            if (date < 10) {
+                date = "0" + date;
+            }
+            if (h < 10) {
+                h = "0" + h;
+            }
+            if (m < 10) {
+                m = "0" + m;
+            }
+            if (s < 10) {
+                s = "0" + s;
+            }
+            if (mm < 10) {
+                mm = "0" + mm;
+            }
+            if (ss < 10) {
+                ss = "0" + ss;
+            }
+
+            tdate.innerHTML = y + "-" + moth + "-" + date + " " + h + ":" + m + ":" + s;
+            document.getElementById("Tdate2").value = tdate.innerHTML;
+        }
+        window.onload = time;
+        var out = window.setInterval(time, 1000);
+    </script>
+</body>
+</html>

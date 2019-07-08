@@ -1,0 +1,172 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>salarystandard_query_list</title>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.7.2.js"></script>
+</head>
+<body> 
+    <form method="post" action="/HR_Fist/salaryCriterion/salaryCriterionAction!querysalarystandardByPage">     
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">您正在做的业务是:人力资源管理--薪酬标准管理--薪酬标准登记查询</font>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td id="biaozui">
+                    符合条件的薪酬标准总数: 3 例
+                </td>
+            </tr>
+        </table>
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1" id="table1">
+            <tr>
+                <td width="15%" class="TD_STYLE1">
+                    <span>薪酬标准编号</span>
+                </td>
+                <td width="20%" class="TD_STYLE1">
+                    <span>薪酬标准名称</span>
+                </td>
+                <td width="15%" class="TD_STYLE1">
+                    <span>制定人</span>
+                </td>
+                <td width="30%" class="TD_STYLE1">
+                    <span>登记时间</span>
+                </td>
+                <td class="TD_STYLE1" width="15%">
+                    薪酬总额
+                </td>
+            </tr>
+                         
+        </table>
+        <html>
+        <head>
+        </head>
+        <body>
+            <p>
+                <div align="center" style="font-size: 18px;color: gray">
+                    &nbsp;&nbsp;总数：
+                    <font style="color: maroon;font-weight: bold;" id="totalCount">3</font>
+                    例
+                    &nbsp;&nbsp;&nbsp;
+                    每页显示 <font style="color: maroon;font-weight: bold;" id="pageSize">10</font>
+                    条
+                    &nbsp;&nbsp;&nbsp;
+                    当前第 <font style="color: maroon;font-weight: bold;" id="currentPage">1</font>
+                    页
+                    &nbsp;&nbsp;&nbsp;共
+                    <font style="color: maroon;font-weight: bold;" id="totalPage">1</font>
+                    页
+                    <a style="color: navy;font-weight: bold" href="javascript:doPage('first')">首页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="javascript:doPage('prev')">上一页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="javascript:doPage('next')">下一页</a>
+
+                    <a style="color: navy;font-weight: bold"
+                       href="javascript:doPage('last')">末页</a>
+                    &nbsp;&nbsp;&nbsp;跳到第
+                    <input id=page type=text value="1" class=input1 size=1>
+                    页&nbsp;&nbsp;
+                    <input type="image" onclick="dopagebybutton()" src="../../images/go.bmp" width=18 height=18 border=0>
+                    <input type="hidden" name="page.startPage" id="startpage" value="1">
+                </div>
+                <script type="text/javascript">
+                    //参数
+                    var currentPage = 1;
+                    var totalPage;
+                    var totalCount;
+                    function getByWhere() {
+                        $.ajax({
+                            url: "/salaryCriterion/GetByWhere",
+                            type: "get",
+                            data: { "CurrentPage": currentPage,"PageSize":3 },
+                            datatype: "text",
+                            success: function (data) {
+                                var p = JSON.parse(data);
+                                var list = p.Data;
+                                $("#table1 tr:gt(0)").remove();
+                                for (var i = 0; i < list.length; i++) {
+                                    var date = new Date(list[i].regist_time);
+                                    var strDate = date.getFullYear() + "年" + date.getMonth() + "月" + date.getDate() + "日";
+                                    var $tr = $("<tr class='TD_STYLE2'><td><a href='/salaryCriterion/salarystandard_query/" + list[i].standard_id + "'>" + list[i].standard_id + "</a></td><td>" + list[i].standard_name + "</td><td>" + list[i].designer + "</td><td>" + strDate + "</td><td>&nbsp;" + list[i].salary_sum + "</td></tr>");
+                                    $("#table1").append($tr);
+                                }
+                                currentPage = p.CurrentPage;
+                                totalCount = p.TotalCount;
+                                totalPage = p.TotalPage;
+                                $("#totalCount").text(totalCount);
+                                $("#currentPage").text(currentPage);
+                                $("#pageSize").text(p.PageSize);
+                                $("#totalPage").text(totalPage);
+                                $("#biaozui").text("符合条件的薪酬标准总数: " + totalCount + " 例");
+                            }
+                        });
+                    }
+                    $(function () {
+                        getByWhere();
+                    });
+                    function dopagebybutton() {
+                        var reg = /^[0-9]*[1-9][0-9]*$/;
+                        if (reg.test(document.getElementById("page").value)) {
+                            document.getElementById("startpage").value = document.getElementById("page").value;
+                        } else {
+                            alert("您的输入有误");
+                            document.getElementById("page").value = document.getElementById("startpage").value;
+                        }
+                        document.forms[0].submit();
+                    }
+                    //页面操作
+                    function doPage(option) {
+                        //document.getElementById("startpage").value = startsize;
+                        //document.forms[0].submit();
+                        switch (option) {
+                            case "first": {
+                                currentPage = 1;
+                                getByWhere();
+                                break;
+                            }
+                            case "prev": {
+                                if (currentPage > 1) {
+                                    currentPage--;
+                                    getByWhere();
+                                }
+                                break;
+                            }
+                            case "next": {
+                                if (currentPage < totalPage) {
+                                    currentPage++;
+                                    getByWhere();
+                                }
+                                break;
+                            }
+                            case "last": {
+                                currentPage = totalPage;
+                                getByWhere();
+                                break;
+                            }
+                        }
+                    }
+                </script>
+        </body>
+    </html>
+</form>
+</body>
+</html>

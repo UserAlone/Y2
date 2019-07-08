@@ -1,0 +1,182 @@
+﻿
+@{
+    Layout = null;
+}
+@using Model;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>query</title>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.12.4.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+</head>
+<body>
+    @{salary_grant sg = (salary_grant)ViewData["sg"];}
+    @{ List<salary_grant_details> list = (List<salary_grant_details>)ViewData["list"];}
+    @{List<object> list2 = (List<object>)ViewData["list2"];}
+    <form method="post" action="salaryGrantAction.do?methodName=doSeatchSalaryGrant">
+        <table width="100%">
+            <tr>
+                <td style="text-align: left">
+                    <font color="black">您正在做的业务是:人力资源管理--薪酬发放管理--薪酬发放复核</font>
+                    <br><br><br>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    薪酬单编号：@sg.salary_grant_id
+                    <input type="hidden" name="salaryGrant.salaryGrantId" value="@sg.salary_grant_id">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left">
+                    机构：
+                    @sg.first_kind_name@sg.third_kind_name@sg.second_kind_name
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    本机构总人数:@sg.human_amount
+                    ，基本薪酬总数:@sg.salary_standard_sum
+                    ，实发总额:<span id="salarySum_sum">@sg.salary_paid_sum</span>
+                </td>
+                <td style="text-align: right">
+                    登记人:@sg.register
+                    登记时间:@sg.regist_time.ToString();
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td class="TD_STYLE1">
+                    <span>序号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>档案编号</span>
+                </td>
+                <td class="TD_STYLE1">
+                    <span>姓名</span>
+                </td>
+                <td class="TD_STYLE1">
+                    薪酬发放详细信息
+                </td>
+                <td class="TD_STYLE1">
+                    奖励金额
+                </td>
+                <td class="TD_STYLE1">
+                    销售绩效总额
+                </td>
+                <td class="TD_STYLE1">
+                    应扣金额
+                </td>
+                <td class="TD_STYLE1">
+                    实发金额
+                </td>
+            </tr>
+
+            @for (int i = 0; i < list.Count; i++)
+            {
+                // var details = (List<salary_standard_details>)dics[i]["薪酬标准单详细信息"];
+                string salaryStandardSum = "salaryStandardSum" + (i + 1);
+                string bounsSum = "bounsSum" + (i + 1);
+                string saleSum = "saleSum" + (i + 1);
+                string deductSum = "deductSum" + (i + 1);
+                string salaryPaidSum = "salaryPaidSum" + (i + 1);
+                <input type="hidden" name="grantDetails[@i].salaryGrantId" value="@list[i].salary_grant_id">
+                <input type="hidden" id="@salaryStandardSum" name="grantDetails[@i].salaryStandardSum" value="@list[i].salary_standard_sum" />
+                <tr class="TD_STYLE2">
+                    <td>
+                        @(i + 1)
+                    </td>
+                    <td>
+                        @list[i].human_id
+                        <input type="hidden" name="grantDetails[@i].humanId" value="@list[i].human_id" />
+                    </td>
+                    <td>
+                        @list[i].human_name
+                        <input type="hidden" name="grantDetails[@i].humanName" value="@list[i].human_name" />
+                    </td>
+                    <td>
+                        <a href="#" id="showSalaryDetails" salary_standard_id="@list2[i]" data-toggle="modal" data-target="#myModal">查看薪酬登记补贴详情</a>
+                    </td>
+                    <td>
+                        @list[i].bouns_sum
+                    </td>
+                    <td>
+                        @list[i].sale_sum
+                    </td>
+                    <td>
+                        @list[i].deduct_sum
+                    </td>
+                    <td>
+                        @list[i].salary_paid_sum
+                    </td>
+                </tr>
+            }
+        </table>
+        <br>
+        <center>
+            <input type="button" style="width: 200;height: 50;font-size: 20px;font-weight: bold;border-bottom-style: ridge;cursor: pointer" onclick="javascript:window.history.back();" value="返 回">
+        </center>
+    </form>
+    <div class="modal" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        登记发放详细信息
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table border="1" id="table2" class="table table-hover">
+                        <tr>
+                            <th>item_id</th>
+                            <th>item_name</th>
+                            <th>item_salary</th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        提交更改
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $(document).on("click", "#showSalaryDetails", function () {
+                $.ajax({
+                    url: "/salaryGrant/Getsalary_grant_details?id=" + $(this).attr("salary_standard_id"),
+                    type: "get",
+                    datatype: "json",
+                    success: function (list) {
+                        $("#table2 tr:gt(0)").remove();
+                        for (var i = 0; i < list.length; i++) {
+                            var $tr = $("<tr><td>" + list[i].item_id + "</td><td>" + list[i].item_name + "</td><td>" + list[i].salary + "</td></tr>");
+                            $("#table2").append($tr);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

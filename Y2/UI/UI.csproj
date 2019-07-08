@@ -80,6 +80,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -202,6 +203,7 @@
     <Compile Include="Controllers\recruitController.cs" />
     <Compile Include="Controllers\salaryCriterionController.cs" />
     <Compile Include="Controllers\salaryGrantController.cs" />
+    <Compile Include="Controllers\SalaryStandardDetailsController.cs" />
     <Compile Include="Controllers\transferController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -215,10 +217,240 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\cwcalendar.css" />
+    <Content Include="css\table.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\11041R35400-19.jpg" />
+    <Content Include="images\2.JPG" />
+    <Content Include="images\2003122615534015613.jpg" />
+    <Content Include="images\20120526002225111.png" />
+    <Content Include="images\bg_lft.jpg" />
+    <Content Include="images\bg_s.jpg" />
+    <Content Include="images\bg_w.jpg" />
+    <Content Include="images\blank.gif" />
+    <Content Include="images\bt_del.gif" />
+    <Content Include="images\bt_edit.gif" />
+    <Content Include="images\e_maximize.gif" />
+    <Content Include="images\e_restore.gif" />
+    <Content Include="images\folder.gif" />
+    <Content Include="images\folder1.gif" />
+    <Content Include="images\foot-bg.jpg" />
+    <Content Include="images\go.bmp" />
+    <Content Include="images\green.swf" />
+    <Content Include="images\images\bonus.gif" />
+    <Content Include="images\images\bonus1.gif" />
+    <Content Include="images\images\config.gif" />
+    <Content Include="images\images\config1.gif" />
+    <Content Include="images\images\engage.gif" />
+    <Content Include="images\images\engage1.gif" />
+    <Content Include="images\images\export.gif" />
+    <Content Include="images\images\export1.gif" />
+    <Content Include="images\images\file.gif" />
+    <Content Include="images\images\file1.gif" />
+    <Content Include="images\images\helpProgram.gif" />
+    <Content Include="images\images\helpProgram1.gif" />
+    <Content Include="images\images\major_change.gif" />
+    <Content Include="images\images\major_change1.gif" />
+    <Content Include="images\images\mod_image\bonus.gif" />
+    <Content Include="images\images\mod_image\bonus_check_list.gif" />
+    <Content Include="images\images\mod_image\bonus_query_locate.gif" />
+    <Content Include="images\images\mod_image\bonus_register_locate.gif" />
+    <Content Include="images\images\mod_image\config.gif" />
+    <Content Include="images\images\mod_image\config_engage.gif" />
+    <Content Include="images\images\mod_image\config_engage_firstKind.gif" />
+    <Content Include="images\images\mod_image\config_engage_secondKind.gif" />
+    <Content Include="images\images\mod_image\config_file.gif" />
+    <Content Include="images\images\mod_image\config_file_firstKind.gif" />
+    <Content Include="images\images\mod_image\config_file_majorFirstKind.gif" />
+    <Content Include="images\images\mod_image\config_file_majorSecondKind.gif" />
+    <Content Include="images\images\mod_image\config_file_publicSetup.gif" />
+    <Content Include="images\images\mod_image\config_file_secondKind.gif" />
+    <Content Include="images\images\mod_image\config_file_thirdKind.gif" />
+    <Content Include="images\images\mod_image\config_file_title.gif" />
+    <Content Include="images\images\mod_image\config_key.gif" />
+    <Content Include="images\images\mod_image\config_key_key.gif" />
+    <Content Include="images\images\mod_image\config_salary.gif" />
+    <Content Include="images\images\mod_image\config_salary_itemName.gif" />
+    <Content Include="images\images\mod_image\config_salary_orderSaleBonus.gif" />
+    <Content Include="images\images\mod_image\config_salary_payType.gif" />
+    <Content Include="images\images\mod_image\config_salary_retailSaleBonus.gif" />
+    <Content Include="images\images\mod_image\engage.gif" />
+    <Content Include="images\images\mod_image\engage_interview.gif" />
+    <Content Include="images\images\mod_image\engage_interview_check_list.gif" />
+    <Content Include="images\images\mod_image\engage_interview_register_locate.gif" />
+    <Content Include="images\images\mod_image\engage_major_release.gif" />
+    <Content Include="images\images\mod_image\engage_major_release_change_list.gif" />
+    <Content Include="images\images\mod_image\engage_major_release_query_list.gif" />
+    <Content Include="images\images\mod_image\engage_major_release_register.gif" />
+    <Content Include="images\images\mod_image\engage_pass.gif" />
+    <Content Include="images\images\mod_image\engage_pass_check_list.gif" />
+    <Content Include="images\images\mod_image\engage_pass_query_list.gif" />
+    <Content Include="images\images\mod_image\engage_pass_register_list.gif" />
+    <Content Include="images\images\mod_image\engage_questiones.gif" />
+    <Content Include="images\images\mod_image\engage_questiones_change_locate.gif" />
+    <Content Include="images\images\mod_image\engage_questiones_query_locate.gif" />
+    <Content Include="images\images\mod_image\engage_questiones_register.gif" />
+    <Content Include="images\images\mod_image\engage_resume.gif" />
+    <Content Include="images\images\mod_image\engage_resume_check_locate.gif" />
+    <Content Include="images\images\mod_image\engage_resume_query_locate.gif" />
+    <Content Include="images\images\mod_image\engage_resume_register.gif" />
+    <Content Include="images\images\mod_image\engage_test.gif" />
+    <Content Include="images\images\mod_image\engage_test_answerCheck_list.gif" />
+    <Content Include="images\images\mod_image\engage_test_answerRegister.gif" />
+    <Content Include="images\images\mod_image\engage_test_pointQuery_locate.gif" />
+    <Content Include="images\images\mod_image\engage_test_questionesRegister_list.gif" />
+    <Content Include="images\images\mod_image\export.gif" />
+    <Content Include="images\images\mod_image\export_excel.gif" />
+    <Content Include="images\images\mod_image\export_pdf.gif" />
+    <Content Include="images\images\mod_image\export_xml.gif" />
+    <Content Include="images\images\mod_image\file.gif" />
+    <Content Include="images\images\mod_image\file_change_locate.gif" />
+    <Content Include="images\images\mod_image\file_check_list.gif" />
+    <Content Include="images\images\mod_image\file_delete.gif" />
+    <Content Include="images\images\mod_image\file_delete_delete_locate.gif" />
+    <Content Include="images\images\mod_image\file_delete_realDelete_list.gif" />
+    <Content Include="images\images\mod_image\file_delete_recovery_locate.gif" />
+    <Content Include="images\images\mod_image\file_query_locate.gif" />
+    <Content Include="images\images\mod_image\file_register.gif" />
+    <Content Include="images\images\mod_image\helpProgram.gif" />
+    <Content Include="images\images\mod_image\helpProgram1.gif" />
+    <Content Include="images\images\mod_image\major_change.gif" />
+    <Content Include="images\images\mod_image\major_change1.gif" />
+    <Content Include="images\images\mod_image\major_change_check_list.gif" />
+    <Content Include="images\images\mod_image\major_change_query_locate.gif" />
+    <Content Include="images\images\mod_image\major_change_register_locate.gif" />
+    <Content Include="images\images\mod_image\nseererp_hr.jpg" />
+    <Content Include="images\images\mod_image\salary.gif" />
+    <Content Include="images\images\mod_image\salary1.gif" />
+    <Content Include="images\images\mod_image\salary_check_list.gif" />
+    <Content Include="images\images\mod_image\salary_query_locate.gif" />
+    <Content Include="images\images\mod_image\salary_register_unit_list.gif" />
+    <Content Include="images\images\mod_image\salary_standard.gif" />
+    <Content Include="images\images\mod_image\salary_standard_change_locate.gif" />
+    <Content Include="images\images\mod_image\salary_standard_check_list.gif" />
+    <Content Include="images\images\mod_image\salary_standard_query_locate.gif" />
+    <Content Include="images\images\mod_image\salary_standard_register.gif" />
+    <Content Include="images\images\mod_image\training.gif" />
+    <Content Include="images\images\mod_image\training_check_list.gif" />
+    <Content Include="images\images\mod_image\training_query_locate.gif" />
+    <Content Include="images\images\mod_image\training_register_locate.gif" />
+    <Content Include="images\images\nseererp_hr.jpg" />
+    <Content Include="images\images\salary.gif" />
+    <Content Include="images\images\salary1.gif" />
+    <Content Include="images\images\salary_standard.gif" />
+    <Content Include="images\images\salary_standard1.gif" />
+    <Content Include="images\images\training.gif" />
+    <Content Include="images\images\training1.gif" />
+    <Content Include="images\jt0.gif" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\login_1.gif" />
+    <Content Include="images\login_11.gif" />
+    <Content Include="images\login_1_1.jpg" />
+    <Content Include="images\login_2.jpg" />
+    <Content Include="images\login_22.jpg" />
+    <Content Include="images\login_2_1.jpg" />
+    <Content Include="images\login_3.jpg" />
+    <Content Include="images\login_33.jpg" />
+    <Content Include="images\login_3_1.jpg" />
+    <Content Include="images\login_button.gif" />
+    <Content Include="images\menu_bg.gif" />
+    <Content Include="images\menu_bg1.gif" />
+    <Content Include="images\menu_bg2.gif" />
+    <Content Include="images\menu_bg3.gif" />
+    <Content Include="images\menu_bgs.gif" />
+    <Content Include="images\menu_topline.gif" />
+    <Content Include="images\minus.gif" />
+    <Content Include="images\minus33.gif" />
+    <Content Include="images\na2.jpg" />
+    <Content Include="images\nn.jpg" />
+    <Content Include="images\NodeImg0.gif" />
+    <Content Include="images\NodeImg1.gif" />
+    <Content Include="images\NodeImg2.gif" />
+    <Content Include="images\nseererp11.jpg" />
+    <Content Include="images\onepice.jpg" />
+    <Content Include="images\plus.gif" />
+    <Content Include="images\plus22.gif" />
+    <Content Include="images\regular.jpg" />
+    <Content Include="images\return.jpg" />
+    <Content Include="images\school.jpg" />
+    <Content Include="images\security.gif" />
+    <Content Include="images\security1.gif" />
+    <Content Include="images\sheet.gif" />
+    <Content Include="images\spacer.gif" />
+    <Content Include="images\t.jpg" />
+    <Content Include="images\tableftF.gif" />
+    <Content Include="images\tableftJ.gif" />
+    <Content Include="images\tabrightF.gif" />
+    <Content Include="images\tabrightJ.gif" />
+    <Content Include="images\tab_inactive.jpg" />
+    <Content Include="images\tab_inactive1.jpg" />
+    <Content Include="images\top-unit.gif" />
+    <Content Include="images\top-unit_副本.jpg" />
+    <Content Include="images\tree_arrow_close.gif" />
+    <Content Include="images\tree_arrow_open.gif" />
+    <Content Include="images\tree_arrow_over.gif" />
+    <Content Include="images\tree_close.gif" />
+    <Content Include="images\tree_icon_cd.gif" />
+    <Content Include="images\tree_icon_cdrom.gif" />
+    <Content Include="images\tree_icon_computer.gif" />
+    <Content Include="images\tree_icon_driver.gif" />
+    <Content Include="images\tree_icon_file.gif" />
+    <Content Include="images\tree_icon_folder.gif" />
+    <Content Include="images\tree_icon_folder_close.gif" />
+    <Content Include="images\tree_icon_folder_open.gif" />
+    <Content Include="images\tree_icon_net.gif" />
+    <Content Include="images\tree_icon_recycler.gif" />
+    <Content Include="images\tree_open.gif" />
+    <Content Include="images\tuopu_01.gif" />
+    <Content Include="images\tuopu_05.gif" />
+    <Content Include="images\tuopu_08.gif" />
+    <Content Include="images\tuopu_10.gif" />
+    <Content Include="images\tuopu_11.gif" />
+    <Content Include="images\tuopu_13.gif" />
+    <Content Include="images\tuopu_14.gif" />
+    <Content Include="images\tuopu_15.gif" />
+    <Content Include="images\tuopu_16.gif" />
+    <Content Include="images\tuopu_18.gif" />
+    <Content Include="images\tuopu_19.gif" />
+    <Content Include="images\tuopu_21.gif" />
+    <Content Include="images\tuopu_22.gif" />
+    <Content Include="images\tuopu_23.gif" />
+    <Content Include="images\tuopu_24.gif" />
+    <Content Include="images\tuopu_26.gif" />
+    <Content Include="images\tuopu_28.gif" />
+    <Content Include="images\tuopu_29.gif" />
+    <Content Include="images\tuopu_31.gif" />
+    <Content Include="images\tuopu_32.gif" />
+    <Content Include="images\tuopu_33.gif" />
+    <Content Include="images\tuopu_34.gif" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\calendar-ch.js" />
+    <Content Include="js\calendar\cal.js" />
+    <Content Include="js\calendar\calendar-win2k-cold-1.css" />
+    <Content Include="js\comm\comm.js" />
+    <Content Include="js\comm\list.js" />
+    <Content Include="js\comm\select.js" />
+    <Content Include="js\comm\time.js" />
+    <Content Include="js\human_check.js" />
+    <Content Include="js\human_input_check.js" />
+    <Content Include="js\human_register.js" />
+    <Content Include="js\jquery-1.12.4.js" />
+    <Content Include="js\jquery-1.7.2.js" />
+    <Content Include="js\jquery.easyui.min.js" />
+    <Content Include="js\jquery.messager.js" />
+    <Content Include="js\locate.js" />
+    <Content Include="js\login.js" />
+    <Content Include="js\right_add.js" />
+    <Content Include="js\right_list_information.js" />
+    <Content Include="js\select.js" />
+    <Content Include="js\selectAll.js" />
+    <Content Include="js\time.js" />
+    <Content Include="js\user_add.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -237,6 +469,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -251,17 +484,54 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Unity.config" />
+    <Content Include="Unity.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\SalaryStandardDetails\Index.cshtml" />
+    <Content Include="Views\salaryCriterion\SalaryStandardRegPage.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_register_success.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_check_list.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_check.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_check_success.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_query_locate.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_query_list.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_query.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change_locate.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change_list.cshtml" />
+    <Content Include="Views\salaryCriterion\salarystandard_change_success.cshtml" />
+    <Content Include="Views\salaryGrant\register_locate.cshtml" />
+    <Content Include="Views\salaryGrant\register_list.cshtml" />
+    <Content Include="Views\salaryGrant\register_commit.cshtml" />
+    <Content Include="Views\salaryGrant\register_success.cshtml" />
+    <Content Include="Views\salaryGrant\check_list.cshtml" />
+    <Content Include="Views\salaryGrant\check.cshtml" />
+    <Content Include="Views\salaryGrant\query_locate.cshtml" />
+    <Content Include="Views\salaryGrant\query_list.cshtml" />
+    <Content Include="Views\salaryGrant\query.cshtml" />
+    <Content Include="Views\client\first_kind.cshtml" />
+    <Content Include="Views\client\first_kind_register.cshtml" />
+    <Content Include="Views\client\first_kind_change.cshtml" />
+    <Content Include="Views\client\second_kind.cshtml" />
+    <Content Include="Views\client\second_kind_register.cshtml" />
+    <Content Include="Views\client\second_kind_change.cshtml" />
+    <Content Include="Views\client\third_kind.cshtml" />
+    <Content Include="Views\client\third_kind_register.cshtml" />
+    <Content Include="Views\client\third_kind_change.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\client\" />
+    <Folder Include="js\easyui\" />
+    <Folder Include="js\input_control\" />
+    <Folder Include="js\media\" />
+    <Folder Include="js\print_page\" />
+    <Folder Include="js\table\" />
+    <Folder Include="js\tree\" />
+    <Folder Include="js\winopen\" />
     <Folder Include="Views\criterionData\" />
     <Folder Include="Views\humanResources\" />
     <Folder Include="Views\power\" />
     <Folder Include="Views\recruit\" />
-    <Folder Include="Views\salaryCriterion\" />
-    <Folder Include="Views\salaryGrant\" />
     <Folder Include="Views\transfer\" />
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +541,32 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BAL\BAL.csproj">
+      <Project>{c50480e3-8d5d-4de9-8ddf-295dade4c150}</Project>
+      <Name>BAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{58a30373-356e-4624-8515-875a83eb669c}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IBLL\IBLL.csproj">
+      <Project>{09dc6638-3eab-4d56-a2cf-e4ee109b869c}</Project>
+      <Name>IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IDAO\IDAO.csproj">
+      <Project>{e5541d16-e77b-416b-8163-e0b5397f52a8}</Project>
+      <Name>IDAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\locContaniner\locContaniner.csproj">
+      <Project>{483cd230-b60c-4741-863a-30a81ea43cb4}</Project>
+      <Name>locContaniner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{3fd11e36-b0a7-4083-89e4-f70f3f725906}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

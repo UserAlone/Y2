@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -52,15 +53,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDao.cs" />
+    <Compile Include="config_file_first_kindDAO.cs" />
+    <Compile Include="config_file_second_kindDAO.cs" />
+    <Compile Include="config_file_third_kindDAO.cs" />
+    <Compile Include="human_fileDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
+    <Compile Include="SalaryStandardDAO.cs" />
+    <Compile Include="SalaryStandardDetailsDAO.cs" />
+    <Compile Include="salary_grantDAO.cs" />
+    <Compile Include="salary_grant_detailsDAO.cs" />
+    <Compile Include="SqlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IDAO\IDAO.csproj">
+      <Project>{e5541d16-e77b-416b-8163-e0b5397f52a8}</Project>
+      <Name>IDAO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{3fd11e36-b0a7-4083-89e4-f70f3f725906}</Project>
       <Name>Model</Name>

@@ -1,0 +1,125 @@
+﻿
+@{
+    Layout = null;
+}
+@using Model;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>second_kind_register</title>
+    <script src="~/js/comm/comm.js"></script>
+    <link href="~/css/table.css" rel="stylesheet" />
+    <script src="~/js/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+		function check(){
+			if (document.getElementById("firstKind.ffkId").value==0){
+				alert("请选择I级机构名称!!!");
+				return false;
+			}
+			if (document.getElementById("secondKind.secondKindName").value==""){
+				alert("II级机构名称不能为空!!!");
+				return false;
+			}
+			if (document.getElementById("secondKind.secondSalaryId").value==""){
+				alert("薪酬发放责任人编号不能为空!!!");
+				return false;
+			}
+			if (document.getElementById("secondKind.secondSaleId").value==""){
+				alert("销售责任人编号不能为空!!!");
+				return false;
+			}
+			document.forms[0].submit();
+		}
+		function change(){
+		var se=document.getElementById("firstKindId");
+		document.getElementById("firstKindName").value=se.options[se.selectedIndex].innerHTML;
+
+		}
+    </script>
+</head>
+<body>
+    <form action="/client/Addconfig_file_second_kind" method="post">
+        <input type="hidden" id="firstKindName" name="first_kind_name">
+        <table width="100%">
+            <tr>
+                <td>
+                    <font color="black">
+                        您正在做的业务是：人力资源--客户化设置--人力资源档案管理设置--II级机构设置--II级机构添加
+                    </font>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <input type="submit" value="提交" class="BUTTON_STYLE1">
+                    <input type="button" value="返回" class="BUTTON_STYLE1"
+                           onclick="history.back();">
+                </td>
+            </tr>
+        </table>
+
+
+        <table width="100%" border="1" cellpadding=0 cellspacing=1
+               bordercolorlight=#848284 bordercolordark=#eeeeee
+               class="TABLE_STYLE1">
+            <tr>
+                <td width="19%" class="TD_STYLE1">
+                    I级机构名称
+                </td>
+                <td width="81%" class="TD_STYLE2">
+                    @{List<config_file_first_kind> list = (List<config_file_first_kind>)ViewData["一级机构数据"];}
+                    <select name="first_kind_id" id="firstKindId" onchange="change()">
+                        @foreach (var item in list)
+                        {
+                            <option value="@item.first_kind_id">@item.first_kind_name</option>
+                        }                  
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td width="19%" class="TD_STYLE1">
+                    II级机构编号
+                </td>
+                <td width="81%" class="TD_STYLE2"><input type="text" readonly="readonly" name="second_kind_id" id="second_kind_id" class="INPUT_STYLE1" /></td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    II级机构名称
+                </td>
+                <td class="TD_STYLE2">
+                    <input type="text" class="INPUT_STYLE1" name="second_kind_name" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    薪酬发放责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+                </td>
+                <td class="TD_STYLE2">
+                    <textarea rows="4" cols="" class="TEXTAREA_STYLE1" name="second_salary_id"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="TD_STYLE1">
+                    销售责任人编号（多个编号之间请用"半角逗号"加"一个空格"隔开，如", "）
+                </td>
+                <td class="TD_STYLE2">
+                    <textarea rows="4" cols="" class="TEXTAREA_STYLE1" name="second_sale_id"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "/client/Createfsk_id",
+                type: "get",
+                datatype: "text",
+                success: function (obj) {
+                    $("#second_kind_id").val(obj);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
